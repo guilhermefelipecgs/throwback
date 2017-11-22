@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+# usage: ./create_sprite_sheet run 5
+#
+# description: 
+# Create sprite sheet with 5 columns for run01.png, run02.png, etc.
+
+size=$(file $1[0]*1.png | awk -F, '{ print $2 }')
+
+montage $1[0-9]*.png -background transparent -tile $2 -geometry "$size" out.png

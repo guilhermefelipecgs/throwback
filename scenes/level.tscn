@@ -1,0 +1,42 @@
+[gd_scene load_steps=3 format=1]
+
+[ext_resource path="res://scenes/squirrel.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scenes/tree.tscn" type="PackedScene" id=2]
+
+[node name="level" type="Node"]
+
+[node name="squirrel" parent="." instance=ExtResource( 1 )]
+
+transform/pos = Vector2( 321, 240 )
+
+[node name="Position2D" type="Position2D" parent="."]
+
+transform/pos = Vector2( 382, 382 )
+
+[node name="tree" parent="." instance=ExtResource( 2 )]
+
+transform/pos = Vector2( 179, 438 )
+wait_time = 1.5
+
+[node name="tree1" parent="." instance=ExtResource( 2 )]
+
+transform/pos = Vector2( 434, 513 )
+wait_time = 2.0
+
+[node name="tree2" parent="." instance=ExtResource( 2 )]
+
+transform/pos = Vector2( 596, 1098 )
+wait_time = 1.5
+
+[node name="tree3" parent="." instance=ExtResource( 2 )]
+
+transform/pos = Vector2( 777, 397 )
+wait_time = 10.0
+
+[node name="tree4" parent="." instance=ExtResource( 2 )]
+
+transform/pos = Vector2( -12, 336 )
+transform/rot = -59.9815
+wait_time = 10.0
+
+
