@@ -14,13 +14,16 @@ var jumping = false
 var on_wall = false
 
 var input = load("res://scripts/input.gd")
-
 var up
 
 func _ready():
 	up = input.new("ui_up")
+	set_process(true)
 	set_fixed_process(true)
-	
+
+func _process(delta):
+	get_node("crt").set_global_pos(get_node("Camera2D").get_camera_screen_center())
+
 func _fixed_process(delta):
 	var dir = Vector2()
 	
@@ -56,6 +59,9 @@ func _fixed_process(delta):
 			lv.y = MAX_SPEED_Y * sign(lv.y)
 	else: # on wall
 		lv = Vector2()
+		
+		if Input.is_action_pressed("ui_down"):
+			on_wall = false
 		
 		if up.key_down():
 			jump = true

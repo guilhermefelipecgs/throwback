@@ -1,14 +1,16 @@
 extends Node2D
 
 export var wait_time = 1.5
+export var can_fall  = false
 
 onready var timer = get_node("Timer")
 
 var started = false
 
 func _ready():
-	timer.set_wait_time(wait_time)
-	timer.connect("timeout", self, "_on_Timer_timeout")
+	if can_fall:
+		timer.set_wait_time(wait_time)
+		timer.connect("timeout", self, "_on_Timer_timeout")
 
 func _on_Timer_timeout():
 	get_node("collisors/trunk").queue_free()

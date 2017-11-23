@@ -13,7 +13,7 @@ extents = Vector2( 30, 137 )
 [sub_resource type="RectangleShape2D" id=2]
 
 custom_solver_bias = 0.0
-extents = Vector2( 32, 124 )
+extents = Vector2( 32, 142 )
 
 [sub_resource type="RectangleShape2D" id=3]
 
@@ -84,7 +84,6 @@ texture = ExtResource( 4 )
 
 [node name="collisors" type="Position2D" parent="."]
 
-editor/display_folded = true
 visibility/visible = false
 transform/pos = Vector2( 0.196698, -493.197 )
 
@@ -131,11 +130,10 @@ _update_shape_index = 2
 
 [node name="floor" type="StaticBody2D" parent="collisors"]
 
-editor/display_folded = true
 transform/pos = Vector2( -0.196698, 0.196686 )
 input/pickable = false
 shapes/0/shape = SubResource( 3 )
-shapes/0/transform = Matrix32( 0.999401, -0.0346135, 0.0346135, 0.999401, 0, 241 )
+shapes/0/transform = Matrix32( 0.999401, -0.0346134, 0.0346134, 0.999401, 0, 243 )
 shapes/0/trigger = false
 collision/layers = 1
 collision/mask = 1
@@ -148,7 +146,7 @@ bounce = 0.0
 
 [node name="CollisionShape2D1" type="CollisionShape2D" parent="collisors/floor"]
 
-transform/pos = Vector2( 0, 241 )
+transform/pos = Vector2( 0, 243 )
 transform/rot = 1.9836
 shape = SubResource( 3 )
 trigger = false
