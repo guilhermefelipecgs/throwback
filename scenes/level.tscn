@@ -199,7 +199,7 @@ color/color_ramp = SubResource( 1 )
 
 [node name="squirrel" parent="." instance=ExtResource( 5 )]
 
-transform/pos = Vector2( 60, 164 )
+transform/pos = Vector2( 62, 170 )
 
 [node name="trees" type="Node" parent="."]
 
@@ -264,5 +264,9 @@ can_fall = false
 transform/pos = Vector2( 2306, 531 )
 wait_time = 10.0
 can_fall = false
+
+[node name="end" type="Position2D" parent="."]
+
+transform/pos = Vector2( 2204, 254 )
 
 

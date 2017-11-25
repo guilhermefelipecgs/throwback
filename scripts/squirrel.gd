@@ -22,7 +22,7 @@ func _ready():
 	set_fixed_process(true)
 
 func _process(delta):
-	get_node("crt").set_global_pos(get_node("Camera2D").get_camera_screen_center())
+	get_node("HUD").set_global_pos(get_node("Camera2D").get_camera_screen_center() - Vector2(384, 288) / 2)
 
 func _fixed_process(delta):
 	var dir = Vector2()
