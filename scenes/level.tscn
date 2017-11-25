@@ -206,47 +206,56 @@ transform/pos = Vector2( 62, 169 )
 [node name="tree" parent="trees" instance=ExtResource( 6 )]
 
 transform/pos = Vector2( 179, 438 )
-wait_time = 1.5
+wait_time = 1.0
+can_fall = true
 
 [node name="tree1" parent="trees" instance=ExtResource( 6 )]
 
 transform/pos = Vector2( 434, 513 )
 wait_time = 2.0
+can_fall = true
 
 [node name="tree2" parent="trees" instance=ExtResource( 6 )]
 
 transform/pos = Vector2( 596, 1098 )
 wait_time = 1.5
+can_fall = true
 
 [node name="tree3" parent="trees" instance=ExtResource( 6 )]
 
 transform/pos = Vector2( 777, 397 )
-wait_time = 10.0
+wait_time = 1.5
+can_fall = true
 
 [node name="tree4" parent="trees" instance=ExtResource( 6 )]
 
 transform/pos = Vector2( 1029, 421 )
 wait_time = 1.5
+can_fall = true
 
 [node name="tree5" parent="trees" instance=ExtResource( 6 )]
 
 transform/pos = Vector2( 1301, 505 )
-wait_time = 4.0
+wait_time = 1.5
+can_fall = true
 
 [node name="tree6" parent="trees" instance=ExtResource( 6 )]
 
 transform/pos = Vector2( 1568, 441 )
-wait_time = 3.0
+wait_time = 1.5
+can_fall = true
 
 [node name="tree7" parent="trees" instance=ExtResource( 6 )]
 
 transform/pos = Vector2( 1865, 571 )
 wait_time = 5.0
+can_fall = true
 
 [node name="tree8" parent="trees" instance=ExtResource( 6 )]
 
 transform/pos = Vector2( 2043, 1060 )
 wait_time = 3.0
+can_fall = true
 
 [node name="tree9" parent="trees" instance=ExtResource( 6 )]
 

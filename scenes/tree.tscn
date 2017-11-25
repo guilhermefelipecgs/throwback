@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=1]
+[gd_scene load_steps=14 format=1]
 
 [ext_resource path="res://scripts/tree.gd" type="Script" id=1]
 [ext_resource path="res://textures/branches.png" type="Texture" id=2]
@@ -6,27 +6,37 @@
 [ext_resource path="res://textures/hole.png" type="Texture" id=4]
 [ext_resource path="res://textures/tree_top_layer.png" type="Texture" id=5]
 
-[sub_resource type="RectangleShape2D" id=1]
+[sub_resource type="RectangleShape2D" id=9]
 
 custom_solver_bias = 0.0
 extents = Vector2( 30, 338 )
 
-[sub_resource type="RectangleShape2D" id=2]
+[sub_resource type="RectangleShape2D" id=10]
 
 custom_solver_bias = 0.0
 extents = Vector2( 32, 128 )
 
-[sub_resource type="RectangleShape2D" id=3]
+[sub_resource type="RectangleShape2D" id=11]
 
 custom_solver_bias = 0.0
 extents = Vector2( 124, 9.05769 )
 
-[sub_resource type="RectangleShape2D" id=4]
+[sub_resource type="RectangleShape2D" id=12]
 
 custom_solver_bias = 0.0
 extents = Vector2( 94.0384, 28.477 )
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="RectangleShape2D" id=13]
+
+custom_solver_bias = 0.0
+extents = Vector2( 44, 514 )
+
+[sub_resource type="RectangleShape2D" id=8]
+
+custom_solver_bias = 0.0
+extents = Vector2( 35, 138 )
+
+[sub_resource type="Animation" id=14]
 
 resource/name = "before_falling"
 length = 0.06
@@ -43,7 +53,7 @@ tracks/0/keys = {
 "values": [ Vector2( 0, -494 ), Vector2( 1, -494 ), Vector2( 0, -493 ) ]
 }
 
-[sub_resource type="Animation" id=6]
+[sub_resource type="Animation" id=15]
 
 resource/name = "fall"
 length = 1.0
@@ -64,10 +74,11 @@ tracks/0/keys = {
 
 script/script = ExtResource( 1 )
 wait_time = 0.0
-can_fall = true
+can_fall = false
 
 [node name="tree" type="Position2D" parent="."]
 
+editor/display_folded = true
 transform/pos = Vector2( 0.196698, -493.197 )
 
 [node name="branches" type="Sprite" parent="tree"]
@@ -98,10 +109,10 @@ transform/pos = Vector2( 0.196698, -493.197 )
 
 transform/pos = Vector2( -1.1967, 493.197 )
 input/pickable = false
-shapes/0/shape = SubResource( 1 )
+shapes/0/shape = SubResource( 9 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, -2, -638 )
 shapes/0/trigger = false
-shapes/1/shape = SubResource( 2 )
+shapes/1/shape = SubResource( 10 )
 shapes/1/transform = Matrix32( 1, 0, 0, 1, -1, -116 )
 shapes/1/trigger = false
 collision/layers = 1
@@ -114,14 +125,14 @@ bounce = 0.0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="collisors/trunk"]
 
 transform/pos = Vector2( -2, -638 )
-shape = SubResource( 1 )
+shape = SubResource( 9 )
 trigger = false
 _update_shape_index = 0
 
 [node name="CollisionShape2D1" type="CollisionShape2D" parent="collisors/trunk"]
 
 transform/pos = Vector2( -1, -116 )
-shape = SubResource( 2 )
+shape = SubResource( 10 )
 trigger = false
 _update_shape_index = 1
 
@@ -129,7 +140,7 @@ _update_shape_index = 1
 
 transform/pos = Vector2( -0.196698, 1.19699 )
 input/pickable = false
-shapes/0/shape = SubResource( 3 )
+shapes/0/shape = SubResource( 11 )
 shapes/0/transform = Matrix32( 0.999401, -0.0346134, 0.0346134, 0.999401, 0, 243 )
 shapes/0/trigger = false
 collision/layers = 1
@@ -145,17 +156,17 @@ bounce = 0.0
 
 transform/pos = Vector2( 0, 243 )
 transform/rot = 1.9836
-shape = SubResource( 3 )
+shape = SubResource( 11 )
 trigger = false
 _update_shape_index = 0
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="area_fall" type="Area2D" parent="."]
 
 editor/display_folded = true
 visibility/visible = false
 transform/pos = Vector2( -1, -269 )
 input/pickable = true
-shapes/0/shape = SubResource( 4 )
+shapes/0/shape = SubResource( 12 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
 shapes/0/trigger = false
 gravity_vec = Vector2( 0, 1 )
@@ -166,11 +177,41 @@ __meta__ = {
 "_edit_group_": true
 }
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="area_fall"]
 
-shape = SubResource( 4 )
+shape = SubResource( 12 )
 trigger = false
 _update_shape_index = 0
+
+[node name="area_z" type="Area2D" parent="."]
+
+visibility/visible = false
+input/pickable = true
+shapes/0/shape = SubResource( 13 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, -2, -489 )
+shapes/0/trigger = false
+shapes/1/shape = SubResource( 8 )
+shapes/1/transform = Matrix32( -4.37114e-08, -1, 1, -4.37114e-08, 0, -262 )
+shapes/1/trigger = false
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="area_z"]
+
+transform/pos = Vector2( -2, -489 )
+shape = SubResource( 13 )
+trigger = false
+_update_shape_index = 0
+
+[node name="CollisionShape2D1" type="CollisionShape2D" parent="area_z"]
+
+transform/pos = Vector2( 0, -262 )
+transform/rot = 90.0
+shape = SubResource( 8 )
+trigger = false
+_update_shape_index = 1
 
 [node name="Timer" type="Timer" parent="."]
 
@@ -184,13 +225,15 @@ autostart = false
 playback/process_mode = 1
 playback/default_blend_time = 0.0
 root/root = NodePath("..")
-anims/before_falling = SubResource( 5 )
-anims/fall = SubResource( 6 )
+anims/before_falling = SubResource( 14 )
+anims/fall = SubResource( 15 )
 playback/active = true
 playback/speed = 1.0
 blend_times = [  ]
 autoplay = ""
 
-[connection signal="body_enter" from="Area2D" to="." method="_on_Area2D_body_enter"]
+[connection signal="body_enter" from="area_fall" to="." method="_on_area_fall_body_enter"]
+
+[connection signal="body_enter" from="area_z" to="." method="_on_area_z_body_enter"]
 
 

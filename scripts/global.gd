@@ -28,3 +28,10 @@ func restart():
 func start():
 	current_level = level.instance()
 	viewport.add_child(current_level)
+	_rearrenge_z_index()
+
+func _rearrenge_z_index():
+	var trees = viewport.get_node("level/trees")
+	
+	for i in range(trees.get_child_count()):
+		trees.get_child(i).set_z(i*2)
