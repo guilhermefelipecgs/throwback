@@ -1,7 +1,7 @@
 extends Node2D
 
 export var wait_time = 1.5
-export var can_fall  = false
+export var can_fall  = true
 
 onready var timer = get_node("Timer")
 

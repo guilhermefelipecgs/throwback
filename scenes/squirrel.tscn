@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=1]
+[gd_scene load_steps=9 format=1]
 
 [ext_resource path="res://scripts/squirrel.gd" type="Script" id=1]
 [ext_resource path="res://scenes/HUD.tscn" type="PackedScene" id=2]
@@ -44,11 +44,16 @@ tracks/0/keys = {
 [sub_resource type="RayShape2D" id=4]
 
 custom_solver_bias = 0.0
-length = 9.1037
+length = 11.5016
+
+[sub_resource type="RayShape2D" id=5]
+
+custom_solver_bias = 0.0
+length = 14.0889
 
 [node name="squirrel" type="KinematicBody2D"]
 
-z/z = 5
+z/z = 1
 input/pickable = false
 shapes/0/shape = SubResource( 1 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 3.09724 )
@@ -108,6 +113,7 @@ drag_margin/bottom = 0.2
 
 [node name="TriggerWall" type="Area2D" parent="."]
 
+editor/display_folded = true
 visibility/visible = false
 input/pickable = true
 shapes/0/shape = SubResource( 4 )
@@ -118,13 +124,36 @@ gravity = 98.0
 linear_damp = 0.1
 angular_damp = 1.0
 
-[node name="CollisionShape2D 2" type="CollisionShape2D" parent="TriggerWall"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TriggerWall"]
 
 transform/rot = 90.0
 shape = SubResource( 4 )
 trigger = true
 _update_shape_index = 0
 
+[node name="TriggerGround" type="Area2D" parent="."]
+
+editor/display_folded = true
+visibility/visible = false
+input/pickable = true
+shapes/0/shape = SubResource( 5 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+shapes/0/trigger = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TriggerGround"]
+
+shape = SubResource( 5 )
+trigger = true
+_update_shape_index = 0
+
 [connection signal="body_enter" from="TriggerWall" to="." method="_on_TriggerWall_body_enter"]
+
+[connection signal="body_enter" from="TriggerGround" to="." method="_on_TriggerGround_body_enter"]
+
+[connection signal="body_exit" from="TriggerGround" to="." method="_on_TriggerGround_body_exit"]
 
 

@@ -199,74 +199,62 @@ color/color_ramp = SubResource( 1 )
 
 [node name="squirrel" parent="." instance=ExtResource( 5 )]
 
-transform/pos = Vector2( 62, 170 )
+transform/pos = Vector2( 62, 169 )
 
 [node name="trees" type="Node" parent="."]
-
-editor/display_folded = true
 
 [node name="tree" parent="trees" instance=ExtResource( 6 )]
 
 transform/pos = Vector2( 179, 438 )
-z/z = -112
 wait_time = 1.5
-can_fall = false
 
 [node name="tree1" parent="trees" instance=ExtResource( 6 )]
 
 transform/pos = Vector2( 434, 513 )
 wait_time = 2.0
-can_fall = false
 
 [node name="tree2" parent="trees" instance=ExtResource( 6 )]
 
 transform/pos = Vector2( 596, 1098 )
 wait_time = 1.5
-can_fall = false
 
 [node name="tree3" parent="trees" instance=ExtResource( 6 )]
 
 transform/pos = Vector2( 777, 397 )
 wait_time = 10.0
-can_fall = false
 
 [node name="tree4" parent="trees" instance=ExtResource( 6 )]
 
 transform/pos = Vector2( 1029, 421 )
-can_fall = false
+wait_time = 1.5
 
 [node name="tree5" parent="trees" instance=ExtResource( 6 )]
 
 transform/pos = Vector2( 1301, 505 )
 wait_time = 4.0
-can_fall = false
 
 [node name="tree6" parent="trees" instance=ExtResource( 6 )]
 
 transform/pos = Vector2( 1568, 441 )
 wait_time = 3.0
-can_fall = false
 
 [node name="tree7" parent="trees" instance=ExtResource( 6 )]
 
 transform/pos = Vector2( 1865, 571 )
 wait_time = 5.0
-can_fall = false
 
 [node name="tree8" parent="trees" instance=ExtResource( 6 )]
 
-transform/pos = Vector2( 2032, 442 )
+transform/pos = Vector2( 2043, 1060 )
 wait_time = 3.0
-can_fall = false
 
 [node name="tree9" parent="trees" instance=ExtResource( 6 )]
 
 transform/pos = Vector2( 2306, 531 )
 wait_time = 10.0
-can_fall = false
 
 [node name="end" type="Position2D" parent="."]
 
-transform/pos = Vector2( 2204, 254 )
+transform/pos = Vector2( 2239, 255 )
 
 

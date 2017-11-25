@@ -3,7 +3,7 @@ extends KinematicBody2D
 var GRAVITY=980
 const SPEED=500
 const JUMP_SPEED=350
-const FRICTION=500
+const FRICTION=600
 const MAX_SPEED_X=200
 const MAX_SPEED_Y=1000
 
@@ -12,6 +12,8 @@ onready var aplayer = get_node("AnimationPlayer")
 var jump = false
 var jumping = false
 var on_wall = false
+var on_floor = false
+var force_flip = false
 
 var input = load("res://scripts/input.gd")
 var up
@@ -23,6 +25,9 @@ func _ready():
 
 func _process(delta):
 	get_node("HUD").set_global_pos(get_node("Camera2D").get_camera_screen_center() - Vector2(384, 288) / 2)
+	
+	if get_pos().y > 400:
+		global.game_over()
 
 func _fixed_process(delta):
 	var dir = Vector2()
@@ -40,7 +45,7 @@ func _fixed_process(delta):
 		lv += dir * SPEED * delta
 		
 		# Apply friction
-		if dir.x == 0 and abs(lv.x) > 0.2:
+		if dir.x == 0 and abs(lv.x) > 0.2 and on_floor:
 			lv.x -= sign(lv.x) * FRICTION * delta
 		
 		# Apply jump
@@ -72,8 +77,10 @@ func _fixed_process(delta):
 				si = -1
 			lv.y -= JUMP_SPEED
 			lv.x -= JUMP_SPEED * si
+			
 			on_wall = false
 			jumping = true
+			force_flip = true
 	
 	# Move and slide
 	lv = move_and_slide(lv, Vector2(0, -1));
@@ -92,10 +99,10 @@ func _apply_animation(dir):
 		aplayer.play("idle")
 	
 	# Flip direction
-	if dir.x < 0:
+	if dir.x < 0 or force_flip and lv.x < 0:
 		get_node("Sprite").set_flip_h(true)
 		get_node("TriggerWall").set_rotd(180)
-	elif dir.x > 0:
+	elif dir.x > 0 or force_flip and lv.x > 0:
 		get_node("Sprite").set_flip_h(false)
 		get_node("TriggerWall").set_rotd(0)
 
@@ -105,3 +112,10 @@ func _on_TriggerWall_body_enter( body ):
 		jumping = false
 		jump=false
 		
+func _on_TriggerGround_body_enter( body ):
+	if body.get_name() != "squirrel":
+		on_floor = true
+
+func _on_TriggerGround_body_exit( body ):
+	if body.get_name() != "squirrel":
+		on_floor = false

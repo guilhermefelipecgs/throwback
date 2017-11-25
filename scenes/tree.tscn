@@ -1,19 +1,20 @@
-[gd_scene load_steps=11 format=1]
+[gd_scene load_steps=12 format=1]
 
 [ext_resource path="res://scripts/tree.gd" type="Script" id=1]
 [ext_resource path="res://textures/branches.png" type="Texture" id=2]
-[ext_resource path="res://textures/hole.png" type="Texture" id=3]
-[ext_resource path="res://textures/trunk.png" type="Texture" id=4]
+[ext_resource path="res://textures/trunk.png" type="Texture" id=3]
+[ext_resource path="res://textures/hole.png" type="Texture" id=4]
+[ext_resource path="res://textures/tree_top_layer.png" type="Texture" id=5]
 
 [sub_resource type="RectangleShape2D" id=1]
 
 custom_solver_bias = 0.0
-extents = Vector2( 30, 137 )
+extents = Vector2( 30, 338 )
 
 [sub_resource type="RectangleShape2D" id=2]
 
 custom_solver_bias = 0.0
-extents = Vector2( 32, 142 )
+extents = Vector2( 32, 128 )
 
 [sub_resource type="RectangleShape2D" id=3]
 
@@ -62,7 +63,8 @@ tracks/0/keys = {
 [node name="tree" type="Node2D"]
 
 script/script = ExtResource( 1 )
-wait_time = 1.0
+wait_time = 0.0
+can_fall = true
 
 [node name="tree" type="Position2D" parent="."]
 
@@ -72,18 +74,23 @@ transform/pos = Vector2( 0.196698, -493.197 )
 
 texture = ExtResource( 2 )
 
-[node name="hole" type="Sprite" parent="tree/branches"]
-
-z/z = 1
-texture = ExtResource( 3 )
-
 [node name="trunk" type="Sprite" parent="tree"]
 
 transform/pos = Vector2( -0.196698, 1.19699 )
+texture = ExtResource( 3 )
+
+[node name="hole" type="Sprite" parent="tree"]
+
 texture = ExtResource( 4 )
+
+[node name="tree_top_layer" type="Sprite" parent="tree"]
+
+z/z = 2
+texture = ExtResource( 5 )
 
 [node name="collisors" type="Position2D" parent="."]
 
+editor/display_folded = true
 visibility/visible = false
 transform/pos = Vector2( 0.196698, -493.197 )
 
@@ -92,14 +99,11 @@ transform/pos = Vector2( 0.196698, -493.197 )
 transform/pos = Vector2( -1.1967, 493.197 )
 input/pickable = false
 shapes/0/shape = SubResource( 1 )
-shapes/0/transform = Matrix32( 1, 0, 0, 1, -2, -433 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, -2, -638 )
 shapes/0/trigger = false
-shapes/1/shape = SubResource( 1 )
-shapes/1/transform = Matrix32( 1, 0, 0, 1, -2, -837 )
+shapes/1/shape = SubResource( 2 )
+shapes/1/transform = Matrix32( 1, 0, 0, 1, -1, -116 )
 shapes/1/trigger = false
-shapes/2/shape = SubResource( 2 )
-shapes/2/transform = Matrix32( 1, 0, 0, 1, -1, -116 )
-shapes/2/trigger = false
 collision/layers = 1
 collision/mask = 1
 constant_linear_velocity = Vector2( 0, 0 )
@@ -109,28 +113,21 @@ bounce = 0.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="collisors/trunk"]
 
-transform/pos = Vector2( -2, -433 )
+transform/pos = Vector2( -2, -638 )
 shape = SubResource( 1 )
 trigger = false
 _update_shape_index = 0
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="collisors/trunk"]
-
-transform/pos = Vector2( -2, -837 )
-shape = SubResource( 1 )
-trigger = false
-_update_shape_index = 1
 
 [node name="CollisionShape2D1" type="CollisionShape2D" parent="collisors/trunk"]
 
 transform/pos = Vector2( -1, -116 )
 shape = SubResource( 2 )
 trigger = false
-_update_shape_index = 2
+_update_shape_index = 1
 
 [node name="floor" type="StaticBody2D" parent="collisors"]
 
-transform/pos = Vector2( -0.196698, 0.196686 )
+transform/pos = Vector2( -0.196698, 1.19699 )
 input/pickable = false
 shapes/0/shape = SubResource( 3 )
 shapes/0/transform = Matrix32( 0.999401, -0.0346134, 0.0346134, 0.999401, 0, 243 )
@@ -154,6 +151,7 @@ _update_shape_index = 0
 
 [node name="Area2D" type="Area2D" parent="."]
 
+editor/display_folded = true
 visibility/visible = false
 transform/pos = Vector2( -1, -269 )
 input/pickable = true
