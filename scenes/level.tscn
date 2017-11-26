@@ -1,17 +1,18 @@
-[gd_scene load_steps=24 format=1]
+[gd_scene load_steps=25 format=1]
 
-[ext_resource path="res://textures/bg-1.png" type="Texture" id=1]
-[ext_resource path="res://textures/tree_blured.png" type="Texture" id=2]
-[ext_resource path="res://textures/bg.png" type="Texture" id=3]
-[ext_resource path="res://textures/bg1.png" type="Texture" id=4]
-[ext_resource path="res://scenes/squirrel.tscn" type="PackedScene" id=5]
-[ext_resource path="res://scenes/tree.tscn" type="PackedScene" id=6]
-[ext_resource path="res://textures/bg_floor.png" type="Texture" id=7]
-[ext_resource path="res://textures/branches.png" type="Texture" id=8]
-[ext_resource path="res://textures/trunk.png" type="Texture" id=9]
-[ext_resource path="res://textures/hole.png" type="Texture" id=10]
-[ext_resource path="res://textures/lumberjack/lumberjack_sprite_sheet.png" type="Texture" id=11]
-[ext_resource path="res://textures/squirrel/squirrel_sprite_sheet.png" type="Texture" id=12]
+[ext_resource path="res://textures/bg-2.png" type="Texture" id=1]
+[ext_resource path="res://textures/bg-1.png" type="Texture" id=2]
+[ext_resource path="res://textures/tree_blured.png" type="Texture" id=3]
+[ext_resource path="res://textures/bg.png" type="Texture" id=4]
+[ext_resource path="res://textures/bg1.png" type="Texture" id=5]
+[ext_resource path="res://scenes/squirrel.tscn" type="PackedScene" id=6]
+[ext_resource path="res://scenes/tree.tscn" type="PackedScene" id=7]
+[ext_resource path="res://textures/bg_floor.png" type="Texture" id=8]
+[ext_resource path="res://textures/branches.png" type="Texture" id=9]
+[ext_resource path="res://textures/trunk.png" type="Texture" id=10]
+[ext_resource path="res://textures/hole.png" type="Texture" id=11]
+[ext_resource path="res://textures/lumberjack/lumberjack_sprite_sheet.png" type="Texture" id=12]
+[ext_resource path="res://textures/squirrel/squirrel_sprite_sheet.png" type="Texture" id=13]
 
 [sub_resource type="GDScript" id=1]
 
@@ -450,7 +451,7 @@ tracks/10/keys = {
 "values": [ false ]
 }
 
-[sub_resource type="Animation" id=11]
+[sub_resource type="Animation" id=7]
 
 resource/name = "attack"
 length = 1.0
@@ -467,7 +468,7 @@ tracks/0/keys = {
 "values": [ 0 ]
 }
 
-[sub_resource type="Animation" id=7]
+[sub_resource type="Animation" id=8]
 
 length = 1.0
 loop = false
@@ -483,7 +484,7 @@ tracks/0/keys = {
 "values": [ 3 ]
 }
 
-[sub_resource type="Animation" id=8]
+[sub_resource type="Animation" id=9]
 
 length = 0.48
 loop = true
@@ -499,7 +500,7 @@ tracks/0/keys = {
 "values": [ 4, 5, 6, 7 ]
 }
 
-[sub_resource type="CanvasItemShader" id=9]
+[sub_resource type="CanvasItemShader" id=10]
 
 _code = {
 "fragment": "
@@ -519,9 +520,9 @@ COLOR = vec4(frame, 1);",
 "vertex_ofs": 0
 }
 
-[sub_resource type="CanvasItemMaterial" id=10]
+[sub_resource type="CanvasItemMaterial" id=11]
 
-shader/shader = SubResource( 9 )
+shader/shader = SubResource( 10 )
 shader/shading_mode = 0
 
 [node name="level" type="Node"]
@@ -542,6 +543,28 @@ scroll/limit_begin = Vector2( 0, 0 )
 scroll/limit_end = Vector2( 0, 0 )
 scroll/ignore_camera_zoom = true
 
+[node name="ParallaxLayer4" type="ParallaxLayer" parent="ParallaxBackground"]
+
+editor/display_folded = true
+motion/scale = Vector2( 0.4, 1 )
+motion/offset = Vector2( 0, 0 )
+motion/mirroring = Vector2( 800, 0 )
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
+
+[node name="bg-2" type="Sprite" parent="ParallaxBackground/ParallaxLayer4"]
+
+texture = ExtResource( 1 )
+centered = false
+
+[node name="bg-3" type="Sprite" parent="ParallaxBackground/ParallaxLayer4"]
+
+transform/pos = Vector2( 400, 0 )
+texture = ExtResource( 1 )
+centered = false
+
 [node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
 
 editor/display_folded = true
@@ -555,13 +578,13 @@ __meta__ = {
 
 [node name="bg" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
 
-texture = ExtResource( 1 )
+texture = ExtResource( 2 )
 centered = false
 
 [node name="bg1" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
 
 transform/pos = Vector2( 400, 0 )
-texture = ExtResource( 1 )
+texture = ExtResource( 2 )
 centered = false
 
 [node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground"]
@@ -578,13 +601,13 @@ __meta__ = {
 [node name="bg" type="Sprite" parent="ParallaxBackground/ParallaxLayer2"]
 
 transform/pos = Vector2( -101, -544 )
-texture = ExtResource( 2 )
+texture = ExtResource( 3 )
 centered = false
 
 [node name="bg1" type="Sprite" parent="ParallaxBackground/ParallaxLayer2"]
 
 transform/pos = Vector2( 325, -440 )
-texture = ExtResource( 2 )
+texture = ExtResource( 3 )
 centered = false
 
 [node name="ParallaxLayer1" type="ParallaxLayer" parent="ParallaxBackground"]
@@ -600,13 +623,13 @@ __meta__ = {
 
 [node name="bg" type="Sprite" parent="ParallaxBackground/ParallaxLayer1"]
 
-texture = ExtResource( 3 )
+texture = ExtResource( 4 )
 centered = false
 
 [node name="bg1" type="Sprite" parent="ParallaxBackground/ParallaxLayer1"]
 
 transform/pos = Vector2( 400, 0 )
-texture = ExtResource( 3 )
+texture = ExtResource( 4 )
 centered = false
 
 [node name="ParallaxLayer3" type="ParallaxLayer" parent="ParallaxBackground"]
@@ -622,13 +645,13 @@ __meta__ = {
 
 [node name="bg" type="Sprite" parent="ParallaxBackground/ParallaxLayer3"]
 
-texture = ExtResource( 4 )
+texture = ExtResource( 5 )
 centered = false
 
 [node name="bg1" type="Sprite" parent="ParallaxBackground/ParallaxLayer3"]
 
 transform/pos = Vector2( 400, 0 )
-texture = ExtResource( 4 )
+texture = ExtResource( 5 )
 centered = false
 
 [node name="Particles2D" type="Particles2D" parent="ParallaxBackground/ParallaxLayer3"]
@@ -710,7 +733,7 @@ params/anim_speed_scale = 1.0
 params/anim_initial_pos = 0.0
 color/color_ramp = SubResource( 2 )
 
-[node name="squirrel" parent="." instance=ExtResource( 5 )]
+[node name="squirrel" parent="." instance=ExtResource( 6 )]
 
 transform/pos = Vector2( 62, 113 )
 
@@ -718,61 +741,61 @@ transform/pos = Vector2( 62, 113 )
 
 editor/display_folded = true
 
-[node name="tree" parent="trees" instance=ExtResource( 6 )]
+[node name="tree" parent="trees" instance=ExtResource( 7 )]
 
 transform/pos = Vector2( 179, 379 )
 wait_time = 1.0
 can_fall = true
 
-[node name="tree1" parent="trees" instance=ExtResource( 6 )]
+[node name="tree1" parent="trees" instance=ExtResource( 7 )]
 
 transform/pos = Vector2( 434, 513 )
 wait_time = 2.0
 can_fall = true
 
-[node name="tree2" parent="trees" instance=ExtResource( 6 )]
+[node name="tree2" parent="trees" instance=ExtResource( 7 )]
 
 transform/pos = Vector2( 622, 1098 )
 wait_time = 1.5
 can_fall = true
 
-[node name="tree3" parent="trees" instance=ExtResource( 6 )]
+[node name="tree3" parent="trees" instance=ExtResource( 7 )]
 
 transform/pos = Vector2( 873, 397 )
 wait_time = 1.5
 can_fall = true
 
-[node name="tree4" parent="trees" instance=ExtResource( 6 )]
+[node name="tree4" parent="trees" instance=ExtResource( 7 )]
 
 transform/pos = Vector2( 1224, 421 )
 wait_time = 1.5
 can_fall = true
 
-[node name="tree5" parent="trees" instance=ExtResource( 6 )]
+[node name="tree5" parent="trees" instance=ExtResource( 7 )]
 
 transform/pos = Vector2( 1496, 505 )
 wait_time = 1.5
 can_fall = true
 
-[node name="tree6" parent="trees" instance=ExtResource( 6 )]
+[node name="tree6" parent="trees" instance=ExtResource( 7 )]
 
 transform/pos = Vector2( 1763, 441 )
 wait_time = 1.5
 can_fall = true
 
-[node name="tree7" parent="trees" instance=ExtResource( 6 )]
+[node name="tree7" parent="trees" instance=ExtResource( 7 )]
 
 transform/pos = Vector2( 2060, 571 )
 wait_time = 5.0
 can_fall = true
 
-[node name="tree8" parent="trees" instance=ExtResource( 6 )]
+[node name="tree8" parent="trees" instance=ExtResource( 7 )]
 
 transform/pos = Vector2( 2238, 1060 )
 wait_time = 3.0
 can_fall = true
 
-[node name="tree_end" parent="trees" instance=ExtResource( 6 )]
+[node name="tree_end" parent="trees" instance=ExtResource( 7 )]
 
 editor/display_folded = true
 transform/pos = Vector2( 2507, 405 )
@@ -786,25 +809,26 @@ transform/pos = Vector2( 3, -272 )
 
 [node name="cinematic" type="Node2D" parent="."]
 
+editor/display_folded = true
 z/z = 14
 
 [node name="bg_floor1" type="Sprite" parent="cinematic"]
 
-transform/pos = Vector2( 200, 228 )
+transform/pos = Vector2( 600, 228 )
 z/z = 3
-texture = ExtResource( 7 )
+texture = ExtResource( 8 )
 
 [node name="bg_floor2" type="Sprite" parent="cinematic"]
 
 transform/pos = Vector2( -200, 228 )
 z/z = 3
-texture = ExtResource( 7 )
+texture = ExtResource( 8 )
 
 [node name="bg_floor3" type="Sprite" parent="cinematic"]
 
-transform/pos = Vector2( 600, 228 )
+transform/pos = Vector2( 200, 228 )
 z/z = 3
-texture = ExtResource( 7 )
+texture = ExtResource( 8 )
 
 [node name="tree" type="Node2D" parent="cinematic"]
 
@@ -819,16 +843,16 @@ transform/pos = Vector2( 0.196698, -493.197 )
 
 [node name="branches" type="Sprite" parent="cinematic/tree/tree"]
 
-texture = ExtResource( 8 )
+texture = ExtResource( 9 )
 
 [node name="trunk" type="Sprite" parent="cinematic/tree/tree"]
 
 transform/pos = Vector2( -0.196698, 1.19699 )
-texture = ExtResource( 9 )
+texture = ExtResource( 10 )
 
 [node name="hole" type="Sprite" parent="cinematic/tree/tree"]
 
-texture = ExtResource( 10 )
+texture = ExtResource( 11 )
 
 [node name="Camera2D" type="Camera2D" parent="cinematic"]
 
@@ -855,7 +879,7 @@ drag_margin/bottom = 0.2
 editor/display_folded = true
 transform/pos = Vector2( 137, 366 )
 z/z = 4
-texture = ExtResource( 11 )
+texture = ExtResource( 12 )
 hframes = 5
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="cinematic/lumberjack"]
@@ -888,7 +912,7 @@ editor/display_folded = true
 visibility/visible = false
 transform/pos = Vector2( 251, 365 )
 z/z = 5
-texture = ExtResource( 12 )
+texture = ExtResource( 13 )
 flip_h = true
 vframes = 2
 hframes = 5
@@ -899,9 +923,9 @@ frame = 3
 playback/process_mode = 1
 playback/default_blend_time = 0.0
 root/root = NodePath("..")
-anims/attack = SubResource( 11 )
-anims/idle = SubResource( 7 )
-anims/run = SubResource( 8 )
+anims/attack = SubResource( 7 )
+anims/idle = SubResource( 8 )
+anims/run = SubResource( 9 )
 playback/active = true
 playback/speed = 1.0
 blend_times = [  ]
@@ -917,7 +941,7 @@ visibility/visible = false
 editor/display_folded = true
 transform/pos = Vector2( 176, 382 )
 z/z = 5
-texture = ExtResource( 12 )
+texture = ExtResource( 13 )
 vframes = 2
 hframes = 5
 frame = 3
@@ -927,9 +951,9 @@ frame = 3
 playback/process_mode = 1
 playback/default_blend_time = 0.0
 root/root = NodePath("..")
-anims/attack = SubResource( 11 )
-anims/idle = SubResource( 7 )
-anims/run = SubResource( 8 )
+anims/attack = SubResource( 7 )
+anims/idle = SubResource( 8 )
+anims/run = SubResource( 9 )
 playback/active = true
 playback/speed = 1.0
 blend_times = [  ]
@@ -940,7 +964,7 @@ autoplay = ""
 editor/display_folded = true
 transform/pos = Vector2( 145, 362 )
 z/z = 5
-texture = ExtResource( 12 )
+texture = ExtResource( 13 )
 vframes = 2
 hframes = 5
 frame = 3
@@ -950,9 +974,9 @@ frame = 3
 playback/process_mode = 1
 playback/default_blend_time = 0.0
 root/root = NodePath("..")
-anims/attack = SubResource( 11 )
-anims/idle = SubResource( 7 )
-anims/run = SubResource( 8 )
+anims/attack = SubResource( 7 )
+anims/idle = SubResource( 8 )
+anims/run = SubResource( 9 )
 playback/active = true
 playback/speed = 1.0
 blend_times = [  ]
@@ -963,7 +987,7 @@ autoplay = ""
 editor/display_folded = true
 transform/pos = Vector2( 156, 400 )
 z/z = 5
-texture = ExtResource( 12 )
+texture = ExtResource( 13 )
 vframes = 2
 hframes = 5
 frame = 3
@@ -973,9 +997,9 @@ frame = 3
 playback/process_mode = 1
 playback/default_blend_time = 0.0
 root/root = NodePath("..")
-anims/attack = SubResource( 11 )
-anims/idle = SubResource( 7 )
-anims/run = SubResource( 8 )
+anims/attack = SubResource( 7 )
+anims/idle = SubResource( 8 )
+anims/run = SubResource( 9 )
 playback/active = true
 playback/speed = 1.0
 blend_times = [  ]
@@ -986,7 +1010,7 @@ autoplay = ""
 editor/display_folded = true
 transform/pos = Vector2( 274, 394 )
 z/z = 5
-texture = ExtResource( 12 )
+texture = ExtResource( 13 )
 flip_h = true
 vframes = 2
 hframes = 5
@@ -997,9 +1021,9 @@ frame = 3
 playback/process_mode = 1
 playback/default_blend_time = 0.0
 root/root = NodePath("..")
-anims/attack = SubResource( 11 )
-anims/idle = SubResource( 7 )
-anims/run = SubResource( 8 )
+anims/attack = SubResource( 7 )
+anims/idle = SubResource( 8 )
+anims/run = SubResource( 9 )
 playback/active = true
 playback/speed = 1.0
 blend_times = [  ]
@@ -1013,7 +1037,7 @@ z/z = 50
 [node name="black_white" type="ColorFrame" parent="cinematic/black_white"]
 
 visibility/visible = false
-material/material = SubResource( 10 )
+material/material = SubResource( 11 )
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2

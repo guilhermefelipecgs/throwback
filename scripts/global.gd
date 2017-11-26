@@ -3,7 +3,7 @@ extends Node
 var level = load("res://scenes/level.tscn")
 var current_level
 var home = true
-var can_start = true
+var can_start = false
 var running = false
 var game_over = false
 
