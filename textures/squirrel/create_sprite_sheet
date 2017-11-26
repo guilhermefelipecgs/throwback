@@ -1,10 +1,20 @@
 #!/usr/bin/env bash
 
-# usage: ./create_sprite_sheet run 5
+# usage: ./create_sprite_sheet [run,jump] 5
 #
 # description: 
-# Create sprite sheet with 5 columns for run01.png, run02.png, etc.
+# Create sprite sheet with 5 columns for run1.png, run2.png, jump1, jump2, etc.
 
-size=$(file $1[0]*1.png | awk -F, '{ print $2 }')
+names=$(echo $1 | sed 's/,/\n/')
+files=""
 
-montage $1[0-9]*.png -background transparent -tile $2 -geometry "$size" out.png
+for name in $names; do
+  size=$(file $name[0]*1.png | awk -F, '{ print $2 }')
+  files+="($name)|"
+done
+files=${files::-1}
+
+files=$(ls | egrep $files)
+
+montage $files -background transparent -tile $2 -geometry "$size" out.png
+

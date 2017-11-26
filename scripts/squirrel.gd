@@ -25,7 +25,7 @@ func _ready():
 
 func _process(delta):
 	get_node("HUD").set_global_pos(get_node("Camera2D").get_camera_screen_center() - Vector2(384, 288) / 2)
-	
+
 	if get_pos().y > 400:
 		global.game_over()
 
@@ -97,6 +97,18 @@ func _apply_animation(dir):
 	if dir.x != 0 and abs(lv.x) > 1 and aplayer.get_current_animation() != "run":
 		aplayer.play("run")
 	elif dir.x == 0 and abs(lv.x) < 150 and aplayer.get_current_animation() != "idle":
+		aplayer.play("idle")
+	
+	if not on_floor:
+		print(lv.y)
+		if lv.y < 0:
+			aplayer.play("jump")
+		elif lv.y > 200:
+			aplayer.play("fall")
+		else:
+			aplayer.play("middle")
+	
+	if on_wall:
 		aplayer.play("idle")
 	
 	# Flip direction

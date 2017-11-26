@@ -116,7 +116,6 @@ __meta__ = {
 
 [node name="Viewport" type="Viewport" parent="."]
 
-editor/display_folded = true
 rect = Rect2( 0, 0, 384, 288 )
 own_world = false
 world = null

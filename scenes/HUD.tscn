@@ -2,9 +2,11 @@
 
 [ext_resource path="res://scripts/progress_bar.gd" type="Script" id=1]
 [ext_resource path="res://textures/flag.png" type="Texture" id=2]
-[ext_resource path="res://textures/crt.png" type="Texture" id=3]
+[ext_resource path="res://fonts/PressStart2P_smal.fnt" type="BitmapFont" id=3]
 
 [node name="HUD" type="Node2D"]
+
+z/z = 99
 
 [node name="progress_bar" type="ColorFrame" parent="."]
 
@@ -24,13 +26,38 @@ script/script = ExtResource( 1 )
 transform/pos = Vector2( 208, 26 )
 texture = ExtResource( 2 )
 
-[node name="crt" type="Sprite" parent="."]
+[node name="credits" type="Label" parent="."]
 
-visibility/visible = false
-texture = ExtResource( 3 )
-centered = false
-__meta__ = {
-"_edit_lock_": true
-}
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 283.0
+margin/top = 258.0
+margin/right = 339.0
+margin/bottom = 266.0
+custom_fonts/font = ExtResource( 3 )
+text = "CREDITS"
+valign = 2
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="1" type="Label" parent="credits"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 66.0
+margin/top = 0.0
+margin/right = 74.0
+margin/bottom = 8.0
+custom_fonts/font = ExtResource( 3 )
+text = "1"
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
 
 
