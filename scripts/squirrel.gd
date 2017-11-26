@@ -28,6 +28,9 @@ func _process(delta):
 
 	if get_pos().y > 400:
 		global.game_over()
+	
+	if global.game_over:
+		get_node("HUD/game_over").show()
 
 func _fixed_process(delta):
 	if global.running:

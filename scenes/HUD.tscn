@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=1]
+[gd_scene load_steps=5 format=1]
 
 [ext_resource path="res://scripts/progress_bar.gd" type="Script" id=1]
 [ext_resource path="res://textures/flag.png" type="Texture" id=2]
 [ext_resource path="res://fonts/PressStart2P_smal.fnt" type="BitmapFont" id=3]
+[ext_resource path="res://scenes/game_over.tscn" type="PackedScene" id=4]
 
 [node name="HUD" type="Node2D"]
 
@@ -28,6 +29,7 @@ texture = ExtResource( 2 )
 
 [node name="credits" type="Label" parent="."]
 
+editor/display_folded = true
 focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 2
@@ -59,5 +61,10 @@ valign = 1
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
+
+[node name="game_over" parent="." instance=ExtResource( 4 )]
+
+visibility/visible = false
+transform/pos = Vector2( 0, 32 )
 
 

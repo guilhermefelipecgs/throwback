@@ -5,6 +5,7 @@ var current_level
 var home = true
 var can_start = true
 var running = false
+var game_over = false
 
 onready var viewport = get_tree().get_root().get_node("CRT/Viewport")
 
@@ -25,6 +26,7 @@ func _input(event):
 
 func game_over():
 	OS.set_time_scale(0)
+	game_over = true
 
 func the_end():
 	running = false
@@ -40,6 +42,7 @@ func start():
 	current_level = level.instance()
 	viewport.add_child(current_level)
 	_rearrenge_z_index()
+	game_over = false
 
 func _rearrenge_z_index():
 	var trees = viewport.get_node("level/trees")
