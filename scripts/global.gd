@@ -26,6 +26,10 @@ func _input(event):
 func game_over():
 	OS.set_time_scale(0)
 
+func the_end():
+	running = false
+	viewport.get_node("level/cinematic/AnimationPlayer").play("cinematic_end")
+
 func restart():
 	running = false
 	viewport.remove_child(current_level)

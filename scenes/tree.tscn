@@ -75,6 +75,7 @@ tracks/0/keys = {
 script/script = ExtResource( 1 )
 wait_time = 0.0
 can_fall = false
+last_tree = false
 
 [node name="tree" type="Position2D" parent="."]
 

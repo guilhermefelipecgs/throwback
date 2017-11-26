@@ -2,6 +2,7 @@ extends Node2D
 
 export var wait_time = 1.5
 export var can_fall  = true
+export var last_tree  = false
 
 onready var timer = get_node("Timer")
 onready var squirrel = get_parent().get_parent().get_node("squirrel")
@@ -12,6 +13,10 @@ func _ready():
 	if can_fall:
 		timer.set_wait_time(wait_time)
 		timer.connect("timeout", self, "_on_Timer_timeout")
+	
+	if last_tree:
+		get_node("tree/trunk").set_texture(load("res://textures/tree_end.png"))
+		get_node("tree/tree_top_layer").set_texture(load("res://textures/tree_end_top_layer.png"))
 
 func _on_Timer_timeout():
 	get_node("collisors/trunk").queue_free()

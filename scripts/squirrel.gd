@@ -100,7 +100,6 @@ func _apply_animation(dir):
 		aplayer.play("idle")
 	
 	if not on_floor:
-		print(lv.y)
 		if lv.y < 0:
 			aplayer.play("jump")
 		elif lv.y > 200:
