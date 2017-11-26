@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=1]
+[gd_scene load_steps=13 format=1]
 
 [ext_resource path="res://textures/bg-1.png" type="Texture" id=1]
 [ext_resource path="res://textures/tree_blured.png" type="Texture" id=2]
@@ -6,17 +6,95 @@
 [ext_resource path="res://textures/bg1.png" type="Texture" id=4]
 [ext_resource path="res://scenes/squirrel.tscn" type="PackedScene" id=5]
 [ext_resource path="res://scenes/tree.tscn" type="PackedScene" id=6]
+[ext_resource path="res://textures/bg_floor.png" type="Texture" id=7]
+[ext_resource path="res://textures/lumberjack.png" type="Texture" id=8]
 
-[sub_resource type="ColorRamp" id=1]
+[sub_resource type="GDScript" id=1]
+
+script/source = "extends Node
+
+func run(status):
+	global.running = status
+	get_node(\"ParallaxBackground/ParallaxLayer3/Particles2D\").set_emitting(true)
+	get_node(\"ParallaxBackground/ParallaxLayer3/Particles2D1\").set_emitting(true)
+	get_node(\"ParallaxBackground/ParallaxLayer3/Particles2D2\").set_emitting(true)"
+
+[sub_resource type="ColorRamp" id=2]
 
 offsets = FloatArray( 0, 0.25731, 0.654971, 1 )
 colors = ColorArray( 1, 0, 0, 1, 1, 0, 0, 1, 1, 0.9375, 0, 1, 1, 0.988095, 0.809524, 0 )
 
+[sub_resource type="Animation" id=3]
+
+resource/name = "cinematic_end"
+length = 1.0
+loop = false
+step = 0.1
+
+[sub_resource type="Animation" id=4]
+
+length = 2.0
+loop = false
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("Camera2D:transform/pos")
+tracks/0/interp = 1
+tracks/0/imported = false
+tracks/0/keys = {
+"times": FloatArray( 1, 2 ),
+"transitions": FloatArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 147, 285 ), Vector2( 62, 144 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Camera2D:current")
+tracks/1/interp = 1
+tracks/1/imported = false
+tracks/1/keys = {
+"times": FloatArray( 0 ),
+"transitions": FloatArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("../squirrel/Camera2D:current")
+tracks/2/interp = 1
+tracks/2/imported = false
+tracks/2/keys = {
+"times": FloatArray( 2 ),
+"transitions": FloatArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("../squirrel/HUD:visibility/visible")
+tracks/3/interp = 1
+tracks/3/imported = false
+tracks/3/keys = {
+"times": FloatArray( 0, 2 ),
+"transitions": FloatArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/4/type = "method"
+tracks/4/path = NodePath("..")
+tracks/4/interp = 1
+tracks/4/imported = false
+tracks/4/keys = {
+"times": FloatArray( 2 ),
+"transitions": FloatArray( 1 ),
+"values": [ {
+"args": [ true ],
+"method": "run"
+} ]
+}
+
 [node name="level" type="Node"]
+
+script/script = SubResource( 1 )
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
-editor/display_folded = true
 layer = -1
 offset = Vector2( 0, 0 )
 rotation = 0.0
@@ -52,7 +130,6 @@ centered = false
 
 [node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground"]
 
-editor/display_folded = true
 motion/scale = Vector2( 0.7, 1 )
 motion/offset = Vector2( 0, 0 )
 motion/mirroring = Vector2( 800, 0 )
@@ -63,7 +140,7 @@ __meta__ = {
 
 [node name="bg" type="Sprite" parent="ParallaxBackground/ParallaxLayer2"]
 
-transform/pos = Vector2( -22, -619 )
+transform/pos = Vector2( -101, -544 )
 texture = ExtResource( 2 )
 centered = false
 
@@ -94,9 +171,6 @@ centered = false
 transform/pos = Vector2( 400, 0 )
 texture = ExtResource( 3 )
 centered = false
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="ParallaxLayer3" type="ParallaxLayer" parent="ParallaxBackground"]
 
@@ -111,13 +185,12 @@ __meta__ = {
 
 [node name="bg" type="Sprite" parent="ParallaxBackground/ParallaxLayer3"]
 
-transform/pos = Vector2( 0, -8 )
 texture = ExtResource( 4 )
 centered = false
 
 [node name="bg1" type="Sprite" parent="ParallaxBackground/ParallaxLayer3"]
 
-transform/pos = Vector2( 400, -8 )
+transform/pos = Vector2( 400, 0 )
 texture = ExtResource( 4 )
 centered = false
 
@@ -128,6 +201,7 @@ z/z = 10
 z/relative = false
 config/amount = 250
 config/lifetime = 6.0
+config/emitting = false
 config/process_mode = 1
 params/direction = 214.19
 params/spread = 45.0
@@ -145,7 +219,7 @@ params/final_size = 1.0
 params/hue_variation = 0.0
 params/anim_speed_scale = 1.0
 params/anim_initial_pos = 0.0
-color/color_ramp = SubResource( 1 )
+color/color_ramp = SubResource( 2 )
 
 [node name="Particles2D2" type="Particles2D" parent="ParallaxBackground/ParallaxLayer3"]
 
@@ -153,6 +227,7 @@ transform/pos = Vector2( 717, 508 )
 z/z = 10
 config/amount = 250
 config/lifetime = 6.0
+config/emitting = false
 config/process_mode = 1
 params/direction = 214.19
 params/spread = 45.0
@@ -170,7 +245,7 @@ params/final_size = 1.0
 params/hue_variation = 0.0
 params/anim_speed_scale = 1.0
 params/anim_initial_pos = 0.0
-color/color_ramp = SubResource( 1 )
+color/color_ramp = SubResource( 2 )
 
 [node name="Particles2D1" type="Particles2D" parent="ParallaxBackground/ParallaxLayer3"]
 
@@ -178,6 +253,7 @@ transform/pos = Vector2( 396, 490 )
 z/z = 10
 config/amount = 250
 config/lifetime = 6.0
+config/emitting = false
 config/process_mode = 1
 params/direction = 214.19
 params/spread = 45.0
@@ -195,17 +271,19 @@ params/final_size = 1.0
 params/hue_variation = 0.0
 params/anim_speed_scale = 1.0
 params/anim_initial_pos = 0.0
-color/color_ramp = SubResource( 1 )
+color/color_ramp = SubResource( 2 )
 
 [node name="squirrel" parent="." instance=ExtResource( 5 )]
 
-transform/pos = Vector2( 62, 169 )
+transform/pos = Vector2( 62, 112 )
 
 [node name="trees" type="Node" parent="."]
 
+editor/display_folded = true
+
 [node name="tree" parent="trees" instance=ExtResource( 6 )]
 
-transform/pos = Vector2( 179, 438 )
+transform/pos = Vector2( 179, 379 )
 wait_time = 1.0
 can_fall = true
 
@@ -217,53 +295,105 @@ can_fall = true
 
 [node name="tree2" parent="trees" instance=ExtResource( 6 )]
 
-transform/pos = Vector2( 596, 1098 )
+transform/pos = Vector2( 622, 1098 )
 wait_time = 1.5
 can_fall = true
 
 [node name="tree3" parent="trees" instance=ExtResource( 6 )]
 
-transform/pos = Vector2( 777, 397 )
+transform/pos = Vector2( 873, 397 )
 wait_time = 1.5
 can_fall = true
 
 [node name="tree4" parent="trees" instance=ExtResource( 6 )]
 
-transform/pos = Vector2( 1029, 421 )
+transform/pos = Vector2( 1224, 421 )
 wait_time = 1.5
 can_fall = true
 
 [node name="tree5" parent="trees" instance=ExtResource( 6 )]
 
-transform/pos = Vector2( 1301, 505 )
+transform/pos = Vector2( 1496, 505 )
 wait_time = 1.5
 can_fall = true
 
 [node name="tree6" parent="trees" instance=ExtResource( 6 )]
 
-transform/pos = Vector2( 1568, 441 )
+transform/pos = Vector2( 1763, 441 )
 wait_time = 1.5
 can_fall = true
 
 [node name="tree7" parent="trees" instance=ExtResource( 6 )]
 
-transform/pos = Vector2( 1865, 571 )
+transform/pos = Vector2( 2060, 571 )
 wait_time = 5.0
 can_fall = true
 
 [node name="tree8" parent="trees" instance=ExtResource( 6 )]
 
-transform/pos = Vector2( 2043, 1060 )
+transform/pos = Vector2( 2238, 1060 )
 wait_time = 3.0
 can_fall = true
 
 [node name="tree9" parent="trees" instance=ExtResource( 6 )]
 
-transform/pos = Vector2( 2306, 531 )
+transform/pos = Vector2( 2537, 531 )
 wait_time = 10.0
 
 [node name="end" type="Position2D" parent="."]
 
-transform/pos = Vector2( 2239, 255 )
+transform/pos = Vector2( 2470, 255 )
+
+[node name="cinematic" type="Node" parent="."]
+
+editor/display_folded = true
+
+[node name="bg_floor" type="Sprite" parent="cinematic"]
+
+transform/pos = Vector2( 200, 228 )
+texture = ExtResource( 7 )
+
+[node name="bg_floor1" type="Sprite" parent="cinematic"]
+
+transform/pos = Vector2( -200, 228 )
+texture = ExtResource( 7 )
+
+[node name="lumberjack" type="Sprite" parent="cinematic"]
+
+transform/pos = Vector2( 108, 372 )
+texture = ExtResource( 8 )
+flip_h = true
+
+[node name="Camera2D" type="Camera2D" parent="cinematic"]
+
+transform/pos = Vector2( 147, 285 )
+anchor_mode = 1
+rotating = false
+current = false
+zoom = Vector2( 1, 1 )
+limit/left = -10000000
+limit/top = -10000000
+limit/right = 10000000
+limit/bottom = 420
+drag_margin/h_enabled = false
+drag_margin/v_enabled = false
+smoothing/enable = false
+smoothing/speed = 5.0
+drag_margin/left = 0.2
+drag_margin/top = 0.2
+drag_margin/right = 0.2
+drag_margin/bottom = 0.2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="cinematic"]
+
+playback/process_mode = 1
+playback/default_blend_time = 0.0
+root/root = NodePath("..")
+anims/cinematic_end = SubResource( 3 )
+anims/cinematic_start = SubResource( 4 )
+playback/active = true
+playback/speed = 1.0
+blend_times = [  ]
+autoplay = "cinematic_start"
 
 

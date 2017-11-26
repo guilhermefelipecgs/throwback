@@ -15,7 +15,7 @@ func _ready():
 
 func _on_Timer_timeout():
 	get_node("collisors/trunk").queue_free()
-	#get_node("floor").queue_free()
+	get_node("collisors").queue_free()
 	get_node("AnimationPlayer").play("fall")
 	get_node("area_z").queue_free()
 

@@ -9,12 +9,12 @@
 [sub_resource type="RectangleShape2D" id=9]
 
 custom_solver_bias = 0.0
-extents = Vector2( 30, 338 )
+extents = Vector2( 27, 338 )
 
 [sub_resource type="RectangleShape2D" id=10]
 
 custom_solver_bias = 0.0
-extents = Vector2( 32, 128 )
+extents = Vector2( 27, 128 )
 
 [sub_resource type="RectangleShape2D" id=11]
 
@@ -78,7 +78,6 @@ can_fall = false
 
 [node name="tree" type="Position2D" parent="."]
 
-editor/display_folded = true
 transform/pos = Vector2( 0.196698, -493.197 )
 
 [node name="branches" type="Sprite" parent="tree"]
@@ -102,7 +101,6 @@ texture = ExtResource( 5 )
 [node name="collisors" type="Position2D" parent="."]
 
 editor/display_folded = true
-visibility/visible = false
 transform/pos = Vector2( 0.196698, -493.197 )
 
 [node name="trunk" type="StaticBody2D" parent="collisors"]
