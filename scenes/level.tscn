@@ -45,7 +45,7 @@ func attack():
 		squirrel.get_node(\"AnimationPlayer\").play(\"attack\")
 	
 func game_over():
-	#global.game_over()"
+	global.game_over()"
 
 [sub_resource type="ColorRamp" id=2]
 
@@ -757,7 +757,7 @@ color/color_ramp = SubResource( 2 )
 
 [node name="squirrel" parent="." instance=ExtResource( 6 )]
 
-transform/pos = Vector2( 2447, 129 )
+transform/pos = Vector2( 63, 112 )
 
 [node name="trees" type="Node" parent="."]
 
@@ -1043,11 +1043,13 @@ autoplay = ""
 
 [node name="black_white" type="Node2D" parent="cinematic"]
 
+editor/display_folded = true
 transform/pos = Vector2( -274, -87 )
 z/z = 50
 
 [node name="black_white" type="ColorFrame" parent="cinematic/black_white"]
 
+visibility/visible = false
 material/material = SubResource( 11 )
 focus/ignore_mouse = false
 focus/stop_mouse = true
@@ -1074,6 +1076,7 @@ color = Color( 0, 0, 0, 1 )
 
 [node name="to_be_continued" type="Sprite" parent="cinematic"]
 
+visibility/visible = false
 transform/pos = Vector2( 400, 348 )
 z/z = 99
 texture = ExtResource( 14 )

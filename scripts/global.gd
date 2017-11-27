@@ -14,6 +14,7 @@ func run():
 
 func _ready():
 	set_process_input(true)
+	set_pause_mode(PAUSE_MODE_PROCESS)
 
 func _input(event):
 	if can_start:
@@ -25,7 +26,7 @@ func _input(event):
 			restart()
 
 func game_over():
-	OS.set_time_scale(0)
+	get_tree().set_pause(true)
 	game_over = true
 	viewport.get_node("level/squirrel/HUD/credits/value").set_text("0")
 
@@ -37,7 +38,7 @@ func restart():
 	running = false
 	viewport.remove_child(current_level)
 	start()
-	OS.set_time_scale(1)
+	get_tree().set_pause(false)
 
 func start():
 	current_level = level.instance()
