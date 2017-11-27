@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=1]
+[gd_scene load_steps=8 format=1]
 
 [ext_resource path="res://scripts/CRT.gd" type="Script" id=1]
 [ext_resource path="res://scenes/home.tscn" type="PackedScene" id=2]
-[ext_resource path="res://CRTViewportDisplay/white.png" type="Texture" id=3]
-[ext_resource path="res://CRTViewportDisplay/CRTFrame.png" type="Texture" id=4]
+[ext_resource path="res://fonts/PressStart2P.fnt" type="BitmapFont" id=3]
+[ext_resource path="res://CRTViewportDisplay/white.png" type="Texture" id=4]
+[ext_resource path="res://CRTViewportDisplay/CRTFrame.png" type="Texture" id=5]
 
 [sub_resource type="CanvasItemShader" id=1]
 
@@ -90,7 +91,7 @@ shader/shader = SubResource( 1 )
 shader/shading_mode = 0
 shader_param/screen_width = 388.0
 shader_param/screen_height = 288.0
-shader_param/BarrelPower = 1.05
+shader_param/BarrelPower = 1.09
 shader_param/color_bleeding = 1.4
 shader_param/bleeding_range_x = 1.0
 shader_param/bleeding_range_y = 0.0
@@ -116,6 +117,7 @@ __meta__ = {
 
 [node name="Viewport" type="Viewport" parent="."]
 
+editor/display_folded = true
 rect = Rect2( 0, 0, 384, 288 )
 own_world = false
 world = null
@@ -133,6 +135,24 @@ gui/disable_input = false
 
 [node name="home" parent="Viewport" instance=ExtResource( 2 )]
 
+[node name="paused" type="Label" parent="."]
+
+visibility/visible = false
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 0.0
+margin/top = 104.0
+margin/right = 384.0
+margin/bottom = 120.0
+custom_fonts/font = ExtResource( 3 )
+text = "Paused"
+align = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
 [node name="CRTShader" type="TextureFrame" parent="."]
 
 material/material = SubResource( 2 )
@@ -144,20 +164,20 @@ margin/left = 0.0
 margin/top = 0.0
 margin/right = 384.0
 margin/bottom = 288.0
-texture = ExtResource( 3 )
+texture = ExtResource( 4 )
 expand = true
 stretch_mode = 0
 
 [node name="CRTFrame" type="Sprite" parent="."]
 
 transform/scale = Vector2( 0.354898, 0.35468 )
-texture = ExtResource( 4 )
+texture = ExtResource( 5 )
 centered = false
 
 [node name="Timer" type="Timer" parent="."]
 
 process_mode = 1
-wait_time = 3.0
+wait_time = 4.0
 one_shot = true
 autostart = true
 

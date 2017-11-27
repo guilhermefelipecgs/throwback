@@ -3,11 +3,14 @@ extends Node
 var level = load("res://scenes/level.tscn")
 var current_level
 var home = true
-var can_start = true
+var can_start = false
 var running = false
 var game_over = false
 
 onready var viewport = get_tree().get_root().get_node("CRT/Viewport")
+
+var input = load("res://scripts/input.gd")
+var accept
 
 func run():
 	running = true
@@ -15,6 +18,7 @@ func run():
 func _ready():
 	set_process_input(true)
 	set_pause_mode(PAUSE_MODE_PROCESS)
+	accept = input.new("ui_accept")
 
 func _input(event):
 	if can_start:
@@ -22,8 +26,11 @@ func _input(event):
 			start()
 			viewport.get_node("home").queue_free()
 			home = false
-		elif Input.is_action_pressed("ui_accept"):
-			restart()
+		elif accept.key_down():
+			if game_over:
+				restart()
+			else:
+				pause()
 
 func game_over():
 	get_tree().set_pause(true)
@@ -45,6 +52,15 @@ func start():
 	viewport.add_child(current_level)
 	_rearrenge_z_index()
 	game_over = false
+
+func pause():
+	if not viewport.get_node("level/cinematic/AnimationPlayer").is_playing():
+		if get_tree().is_paused():
+			get_tree().set_pause(false)
+			viewport.get_parent().get_node("paused").hide()
+		else:
+			get_tree().set_pause(true)
+			viewport.get_parent().get_node("paused").show()
 
 func _rearrenge_z_index():
 	var trees = viewport.get_node("level/trees")

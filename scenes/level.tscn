@@ -43,9 +43,12 @@ func attack():
 	
 	for squirrel in get_node(\"cinematic/squirrels\").get_children():
 		squirrel.get_node(\"AnimationPlayer\").play(\"attack\")
-	
-func game_over():
-	global.game_over()"
+
+func stop():
+	get_tree().set_pause(true)
+
+func call_credits():
+	pass"
 
 [sub_resource type="ColorRamp" id=2]
 
@@ -106,8 +109,8 @@ tracks/1/path = NodePath("..")
 tracks/1/interp = 1
 tracks/1/imported = false
 tracks/1/keys = {
-"times": FloatArray( 0, 1, 1.5, 2.3, 5.8, 9.5, 9.7 ),
-"transitions": FloatArray( 1, 1, 1, 1, 1, 1, 1 ),
+"times": FloatArray( 0, 1, 1.5, 2.3, 5.8, 9.5, 9.7, 13 ),
+"transitions": FloatArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
 "values": [ {
 "args": [  ],
 "method": "stop_cut"
@@ -128,7 +131,10 @@ tracks/1/keys = {
 "method": "attack"
 }, {
 "args": [  ],
-"method": "game_over"
+"method": "stop"
+}, {
+"args": [  ],
+"method": "call_credits"
 } ]
 }
 tracks/2/type = "value"
@@ -412,7 +418,7 @@ tracks/4/path = NodePath("..")
 tracks/4/interp = 1
 tracks/4/imported = false
 tracks/4/keys = {
-"times": FloatArray( 0.6, 2 ),
+"times": FloatArray( 0.6, 2.1 ),
 "transitions": FloatArray( 1, 1 ),
 "values": [ {
 "args": [  ],
@@ -795,6 +801,8 @@ transform/pos = Vector2( 62, 112 )
 
 [node name="trees" type="Node" parent="."]
 
+editor/display_folded = true
+
 [node name="tree" parent="trees" instance=ExtResource( 7 )]
 
 transform/pos = Vector2( 179, 379 )
@@ -963,7 +971,7 @@ autoplay = "cinematic_start"
 
 editor/display_folded = true
 visibility/visible = false
-transform/pos = Vector2( 338, 396 )
+transform/pos = Vector2( 251, 365 )
 z/z = 5
 texture = ExtResource( 13 )
 flip_h = true
@@ -992,8 +1000,7 @@ visibility/visible = false
 [node name="squirrel1" type="Sprite" parent="cinematic/squirrels"]
 
 editor/display_folded = true
-visibility/visible = false
-transform/pos = Vector2( 145, 397 )
+transform/pos = Vector2( 176, 382 )
 z/z = 5
 texture = ExtResource( 13 )
 vframes = 2
@@ -1016,8 +1023,7 @@ autoplay = ""
 [node name="squirrel2" type="Sprite" parent="cinematic/squirrels"]
 
 editor/display_folded = true
-visibility/visible = false
-transform/pos = Vector2( 115, 381 )
+transform/pos = Vector2( 145, 362 )
 z/z = 5
 texture = ExtResource( 13 )
 vframes = 2
@@ -1040,8 +1046,7 @@ autoplay = ""
 [node name="squirrel3" type="Sprite" parent="cinematic/squirrels"]
 
 editor/display_folded = true
-visibility/visible = false
-transform/pos = Vector2( 121, 407 )
+transform/pos = Vector2( 156, 400 )
 z/z = 5
 texture = ExtResource( 13 )
 vframes = 2
@@ -1064,8 +1069,7 @@ autoplay = ""
 [node name="squirrel4" type="Sprite" parent="cinematic/squirrels"]
 
 editor/display_folded = true
-visibility/visible = false
-transform/pos = Vector2( 293, 404 )
+transform/pos = Vector2( 274, 394 )
 z/z = 5
 texture = ExtResource( 13 )
 flip_h = true
@@ -1135,7 +1139,7 @@ color = Color( 0, 0, 0, 1 )
 [node name="to_be_continued" type="Sprite" parent="cinematic"]
 
 visibility/visible = false
-transform/pos = Vector2( 400, 348 )
+transform/pos = Vector2( 394, 364 )
 z/z = 99
 texture = ExtResource( 14 )
 
