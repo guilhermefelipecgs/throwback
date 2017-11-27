@@ -18,6 +18,7 @@ var force_flip = false
 
 var input = load("res://scripts/input.gd")
 var up
+var idle_sec = 0
 
 func _ready():
 	up = input.new("ui_up")
@@ -37,6 +38,16 @@ func _process(delta):
 		if not (hud_game_over.is_visible() and streamPlayer.is_playing()):
 			streamPlayer.play()
 		hud_game_over.show()
+	
+	# GO
+	if global.running:
+		if OS.get_ticks_msec() > idle_sec and not get_node("HUD/go/AnimationPlayer").is_playing():
+			idle_sec += 2000
+			get_node("HUD/go/AnimationPlayer").play("go")
+		
+		if lv != Vector2():
+			idle_sec = OS.get_ticks_msec() + 2000
+
 
 func _fixed_process(delta):
 	if global.running:
