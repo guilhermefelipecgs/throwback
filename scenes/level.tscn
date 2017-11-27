@@ -745,55 +745,46 @@ editor/display_folded = true
 
 transform/pos = Vector2( 179, 379 )
 wait_time = 1.0
-can_fall = true
 
 [node name="tree1" parent="trees" instance=ExtResource( 7 )]
 
 transform/pos = Vector2( 434, 513 )
 wait_time = 2.0
-can_fall = true
 
 [node name="tree2" parent="trees" instance=ExtResource( 7 )]
 
 transform/pos = Vector2( 622, 1098 )
 wait_time = 1.5
-can_fall = true
 
 [node name="tree3" parent="trees" instance=ExtResource( 7 )]
 
 transform/pos = Vector2( 873, 397 )
 wait_time = 1.5
-can_fall = true
 
 [node name="tree4" parent="trees" instance=ExtResource( 7 )]
 
 transform/pos = Vector2( 1224, 421 )
 wait_time = 1.5
-can_fall = true
 
 [node name="tree5" parent="trees" instance=ExtResource( 7 )]
 
 transform/pos = Vector2( 1496, 505 )
 wait_time = 1.5
-can_fall = true
 
 [node name="tree6" parent="trees" instance=ExtResource( 7 )]
 
 transform/pos = Vector2( 1763, 441 )
 wait_time = 1.5
-can_fall = true
 
 [node name="tree7" parent="trees" instance=ExtResource( 7 )]
 
 transform/pos = Vector2( 2060, 571 )
 wait_time = 5.0
-can_fall = true
 
 [node name="tree8" parent="trees" instance=ExtResource( 7 )]
 
 transform/pos = Vector2( 2238, 1060 )
 wait_time = 3.0
-can_fall = true
 
 [node name="tree_end" parent="trees" instance=ExtResource( 7 )]
 

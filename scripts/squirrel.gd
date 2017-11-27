@@ -20,6 +20,8 @@ var input = load("res://scripts/input.gd")
 var up
 var idle_sec = 0
 
+var vfx_run = load("res://scenes/vfx_run.tscn")
+
 func _ready():
 	up = input.new("ui_up")
 	set_process(true)
@@ -56,12 +58,16 @@ func _fixed_process(delta):
 		if not on_wall:
 			if Input.is_action_pressed("ui_right"):
 				dir.x = 1
+				_vfx_run(dir.x)
+					
 			elif Input.is_action_pressed("ui_left"):
 				dir.x = -1
+				_vfx_run(dir.x)
 			
 			if up.key_down() and on_floor:
 				jump = true
 				splayer.play("jump")
+				_vfx_jump_fall()
 			
 			# Appply direction with speed
 			lv += dir * SPEED * delta
@@ -140,6 +146,35 @@ func _apply_animation(dir):
 		get_node("Sprite").set_flip_h(false)
 		get_node("TriggerWall").set_rotd(0)
 
+func _vfx_run(dir):
+	if lv.x == 0:
+		var vfx_i = vfx_run.instance()
+		vfx_i.set_global_pos(get_node("vfx_position").get_global_pos())
+		vfx_i.set_z(get_z())
+		
+		if dir < 0:
+			vfx_i.set_flip_h(true)
+			vfx_i.set_pos(vfx_i.get_pos() + Vector2(12, -3))
+		else:
+			vfx_i.set_pos(vfx_i.get_pos() - Vector2(12, 3))
+			
+		get_tree().get_root().get_node("CRT/Viewport/level").add_child(vfx_i)
+
+func _vfx_jump_fall():
+	var vfx_l = vfx_run.instance()
+	var vfx_r = vfx_run.instance()
+	
+	vfx_l.set_global_pos(get_node("vfx_position").get_global_pos())
+	vfx_r.set_global_pos(get_node("vfx_position").get_global_pos())
+	vfx_l.set_z(get_z())
+	vfx_r.set_z(get_z())
+	vfx_l.set_pos(vfx_l.get_pos() - Vector2(12, 3))
+	vfx_r.set_pos(vfx_r.get_pos() + Vector2(12, -3))
+	vfx_r.set_flip_h(true)
+	
+	get_tree().get_root().get_node("CRT/Viewport/level").add_child(vfx_l)
+	get_tree().get_root().get_node("CRT/Viewport/level").add_child(vfx_r)
+
 func _on_TriggerWall_body_enter( body ):
 	if body.get_name() != "squirrel" and body.get_name() == "trunk":
 		on_wall = true
@@ -154,6 +189,7 @@ func _on_TriggerGround_body_enter( body ):
 	if body.get_name() != "squirrel":
 		on_floor = true
 		splayer.play("fall")
+		_vfx_jump_fall()
 
 func _on_TriggerGround_body_exit( body ):
 	if body.get_name() != "squirrel":
