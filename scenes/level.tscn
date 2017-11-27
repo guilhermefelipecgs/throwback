@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=1]
+[gd_scene load_steps=29 format=1]
 
 [ext_resource path="res://textures/bg-2.png" type="Texture" id=1]
 [ext_resource path="res://textures/bg-1.png" type="Texture" id=2]
@@ -226,10 +226,10 @@ tracks/11/path = NodePath("black_white/black_white:visibility/visible")
 tracks/11/interp = 1
 tracks/11/imported = false
 tracks/11/keys = {
-"times": FloatArray( 0, 2.3, 5.8, 9.7 ),
-"transitions": FloatArray( 1, 1, 1, 1 ),
+"times": FloatArray( 0, 2.3, 5.8 ),
+"transitions": FloatArray( 1, 1, 1 ),
 "update": 1,
-"values": [ false, true, false, true ]
+"values": [ false, true, false ]
 }
 tracks/12/type = "value"
 tracks/12/path = NodePath("tree:visibility/visible")
@@ -346,6 +346,16 @@ tracks/23/path = NodePath("to_be_continued:visibility/visible")
 tracks/23/interp = 1
 tracks/23/imported = false
 tracks/23/keys = {
+"times": FloatArray( 0, 9.7 ),
+"transitions": FloatArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/24/type = "value"
+tracks/24/path = NodePath("black_white/sepia:visibility/visible")
+tracks/24/interp = 1
+tracks/24/imported = false
+tracks/24/keys = {
 "times": FloatArray( 0, 9.7 ),
 "transitions": FloatArray( 1, 1 ),
 "update": 1,
@@ -546,6 +556,30 @@ COLOR = vec4(frame, 1);",
 
 shader/shader = SubResource( 10 )
 shader/shading_mode = 0
+
+[sub_resource type="CanvasItemShader" id=12]
+
+_code = {
+"fragment": "uniform color base=color(0.75,0.6,0.2,1.0);
+vec3 c = texscreen(SCREEN_UV);
+
+float v = dot(c,vec3(0.299,0.587,0.114));
+v=v*1.6;
+
+COLOR.rgb= base.rgb*v;
+",
+"fragment_ofs": 0,
+"light": "",
+"light_ofs": 0,
+"vertex": "",
+"vertex_ofs": 0
+}
+
+[sub_resource type="CanvasItemMaterial" id=13]
+
+shader/shader = SubResource( 12 )
+shader/shading_mode = 0
+shader_param/base = Color( 0.875, 0.726959, 0.628906, 1 )
 
 [node name="level" type="Node"]
 
@@ -757,7 +791,7 @@ color/color_ramp = SubResource( 2 )
 
 [node name="squirrel" parent="." instance=ExtResource( 6 )]
 
-transform/pos = Vector2( 63, 112 )
+transform/pos = Vector2( 2399, 122 )
 
 [node name="trees" type="Node" parent="."]
 
@@ -822,6 +856,7 @@ transform/pos = Vector2( 3, -272 )
 
 [node name="cinematic" type="Node2D" parent="."]
 
+transform/pos = Vector2( 2167, 0 )
 z/z = 14
 
 [node name="bg_floor1" type="Sprite" parent="cinematic"]
@@ -868,10 +903,10 @@ texture = ExtResource( 11 )
 
 [node name="Camera2D" type="Camera2D" parent="cinematic"]
 
-transform/pos = Vector2( 147, 285 )
+transform/pos = Vector2( 305.961, 110.286 )
 anchor_mode = 1
 rotating = false
-current = false
+current = true
 zoom = Vector2( 1, 1 )
 limit/left = -10000000
 limit/top = -10000000
@@ -889,9 +924,10 @@ drag_margin/bottom = 0.2
 [node name="lumberjack" type="Sprite" parent="cinematic"]
 
 editor/display_folded = true
-transform/pos = Vector2( 137, 366 )
+transform/pos = Vector2( 200, 368 )
 z/z = 4
 texture = ExtResource( 12 )
+flip_h = true
 hframes = 5
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="cinematic/lumberjack"]
@@ -921,8 +957,7 @@ autoplay = "cinematic_start"
 [node name="squirrel" type="Sprite" parent="cinematic"]
 
 editor/display_folded = true
-visibility/visible = false
-transform/pos = Vector2( 251, 365 )
+transform/pos = Vector2( 338, 396 )
 z/z = 5
 texture = ExtResource( 13 )
 flip_h = true
@@ -946,12 +981,12 @@ autoplay = ""
 [node name="squirrels" type="Node2D" parent="cinematic"]
 
 editor/display_folded = true
-visibility/visible = false
 
 [node name="squirrel1" type="Sprite" parent="cinematic/squirrels"]
 
 editor/display_folded = true
-transform/pos = Vector2( 176, 382 )
+visibility/visible = false
+transform/pos = Vector2( 145, 397 )
 z/z = 5
 texture = ExtResource( 13 )
 vframes = 2
@@ -974,7 +1009,8 @@ autoplay = ""
 [node name="squirrel2" type="Sprite" parent="cinematic/squirrels"]
 
 editor/display_folded = true
-transform/pos = Vector2( 145, 362 )
+visibility/visible = false
+transform/pos = Vector2( 115, 381 )
 z/z = 5
 texture = ExtResource( 13 )
 vframes = 2
@@ -997,7 +1033,8 @@ autoplay = ""
 [node name="squirrel3" type="Sprite" parent="cinematic/squirrels"]
 
 editor/display_folded = true
-transform/pos = Vector2( 156, 400 )
+visibility/visible = false
+transform/pos = Vector2( 121, 407 )
 z/z = 5
 texture = ExtResource( 13 )
 vframes = 2
@@ -1020,7 +1057,8 @@ autoplay = ""
 [node name="squirrel4" type="Sprite" parent="cinematic/squirrels"]
 
 editor/display_folded = true
-transform/pos = Vector2( 274, 394 )
+visibility/visible = false
+transform/pos = Vector2( 293, 404 )
 z/z = 5
 texture = ExtResource( 13 )
 flip_h = true
@@ -1043,7 +1081,6 @@ autoplay = ""
 
 [node name="black_white" type="Node2D" parent="cinematic"]
 
-editor/display_folded = true
 transform/pos = Vector2( -274, -87 )
 z/z = 50
 
@@ -1064,6 +1101,19 @@ color = Color( 1, 1, 1, 1 )
 [node name="black" type="ColorFrame" parent="cinematic/black_white"]
 
 visibility/visible = false
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 832.0
+margin/bottom = 600.0
+color = Color( 0, 0, 0, 1 )
+
+[node name="sepia" type="ColorFrame" parent="cinematic/black_white"]
+
+material/material = SubResource( 13 )
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
