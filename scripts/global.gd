@@ -3,7 +3,7 @@ extends Node
 var level = load("res://scenes/level.tscn")
 var current_level
 var home = true
-var can_start = false
+var can_start = true
 var running = false
 var game_over = false
 
@@ -27,6 +27,7 @@ func _input(event):
 func game_over():
 	OS.set_time_scale(0)
 	game_over = true
+	viewport.get_node("level/squirrel/HUD/credits/value").set_text("0")
 
 func the_end():
 	running = false

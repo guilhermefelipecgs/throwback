@@ -9,6 +9,7 @@ const MAX_SPEED_Y=1000
 
 var lv = Vector2()
 onready var aplayer = get_node("AnimationPlayer")
+onready var splayer = get_node("SamplePlayer")
 var jump = false
 var jumping = false
 var on_wall = false
@@ -30,7 +31,12 @@ func _process(delta):
 		global.game_over()
 	
 	if global.game_over:
-		get_node("HUD/game_over").show()
+		var hud_game_over = get_node("HUD/game_over")
+		var streamPlayer = hud_game_over.get_node("StreamPlayer")
+		
+		if not (hud_game_over.is_visible() and streamPlayer.is_playing()):
+			streamPlayer.play()
+		hud_game_over.show()
 
 func _fixed_process(delta):
 	if global.running:
@@ -44,6 +50,7 @@ func _fixed_process(delta):
 			
 			if up.key_down() and on_floor:
 				jump = true
+				splayer.play("jump")
 			
 			# Appply direction with speed
 			lv += dir * SPEED * delta
@@ -74,6 +81,7 @@ func _fixed_process(delta):
 			
 			if up.key_down():
 				jump = true
+				splayer.play("jump")
 			
 			if jump and not jumping:
 				var si = 1;
@@ -134,6 +142,7 @@ func _on_TriggerWall_body_exit( body ):
 func _on_TriggerGround_body_enter( body ):
 	if body.get_name() != "squirrel":
 		on_floor = true
+		splayer.play("fall")
 
 func _on_TriggerGround_body_exit( body ):
 	if body.get_name() != "squirrel":

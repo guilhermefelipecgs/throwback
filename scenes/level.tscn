@@ -735,7 +735,7 @@ color/color_ramp = SubResource( 2 )
 
 [node name="squirrel" parent="." instance=ExtResource( 6 )]
 
-transform/pos = Vector2( 62, 113 )
+transform/pos = Vector2( 73, 111 )
 
 [node name="trees" type="Node" parent="."]
 
