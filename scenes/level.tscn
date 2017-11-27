@@ -538,11 +538,11 @@ _code = {
 "fragment": "
 vec3 frame = texscreen(SCREEN_UV);
 
-float average = (frame.r*0.299 + frame.g*0.587 + frame.b*0.114);
+float luma = (frame.r*0.299 + frame.g*0.587 + frame.b*0.114);
 
-frame.r = average;
-frame.g = average;
-frame.b = average;
+frame.r = luma;
+frame.g = luma;
+frame.b = luma;
 
 COLOR = vec4(frame, 1);",
 "fragment_ofs": 0,
@@ -1088,7 +1088,6 @@ autoplay = ""
 
 [node name="black_white" type="Node2D" parent="cinematic"]
 
-editor/display_folded = true
 transform/pos = Vector2( -274, -87 )
 z/z = 50
 
