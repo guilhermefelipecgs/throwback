@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=1]
+[gd_scene load_steps=27 format=1]
 
 [ext_resource path="res://textures/bg-2.png" type="Texture" id=1]
 [ext_resource path="res://textures/bg-1.png" type="Texture" id=2]
@@ -13,6 +13,8 @@
 [ext_resource path="res://textures/hole.png" type="Texture" id=11]
 [ext_resource path="res://textures/lumberjack/lumberjack_sprite_sheet.png" type="Texture" id=12]
 [ext_resource path="res://textures/squirrel/squirrel_sprite_sheet.png" type="Texture" id=13]
+[ext_resource path="res://textures/to_be_continued.png" type="Texture" id=14]
+[ext_resource path="res://sounds/to_be_continued.ogg" type="AudioStream" id=15]
 
 [sub_resource type="GDScript" id=1]
 
@@ -43,7 +45,7 @@ func attack():
 		squirrel.get_node(\"AnimationPlayer\").play(\"attack\")
 	
 func game_over():
-	global.game_over()"
+	#global.game_over()"
 
 [sub_resource type="ColorRamp" id=2]
 
@@ -86,7 +88,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id=5]
 
-length = 7.0
+length = 25.0
 loop = false
 step = 0.1
 tracks/0/type = "value"
@@ -104,7 +106,7 @@ tracks/1/path = NodePath("..")
 tracks/1/interp = 1
 tracks/1/imported = false
 tracks/1/keys = {
-"times": FloatArray( 0, 1, 1.5, 2.3, 5.8, 6.8, 7 ),
+"times": FloatArray( 0, 1, 1.5, 2.3, 5.8, 9.5, 9.7 ),
 "transitions": FloatArray( 1, 1, 1, 1, 1, 1, 1 ),
 "values": [ {
 "args": [  ],
@@ -134,20 +136,20 @@ tracks/2/path = NodePath("lumberjack:transform/pos")
 tracks/2/interp = 1
 tracks/2/imported = false
 tracks/2/keys = {
-"times": FloatArray( 0, 2.3, 3.3, 4.5, 5.8, 6.1, 6.4 ),
-"transitions": FloatArray( 1, 1, 1, 1, 1, 1, 1 ),
+"times": FloatArray( 0, 2.3, 3.3, 4.5, 5.8, 6.7, 7.7, 8.7 ),
+"transitions": FloatArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 1,
-"values": [ Vector2( 200, 368 ), Vector2( 105, 366 ), Vector2( 37, 366 ), Vector2( -77, 366 ), Vector2( 200, 368 ), Vector2( 227, 368 ), Vector2( 200, 368 ) ]
+"values": [ Vector2( 200, 368 ), Vector2( 105, 366 ), Vector2( 37, 366 ), Vector2( -77, 366 ), Vector2( 200, 368 ), Vector2( 227, 368 ), Vector2( 200, 368 ), Vector2( 227, 368 ) ]
 }
 tracks/3/type = "value"
 tracks/3/path = NodePath("lumberjack:flip_h")
 tracks/3/interp = 1
 tracks/3/imported = false
 tracks/3/keys = {
-"times": FloatArray( 0, 2.3, 3.3, 4.5, 5.8, 6.1, 6.4 ),
-"transitions": FloatArray( 0, 0, 1, 1, 0, 1, 0 ),
+"times": FloatArray( 0, 2.3, 3.3, 4.5, 5.8, 6.7, 7.7, 8.7 ),
+"transitions": FloatArray( 0, 0, 1, 1, 0, 1, 0, 1 ),
 "update": 1,
-"values": [ true, true, false, true, true, false, true ]
+"values": [ true, true, false, true, true, false, true, false ]
 }
 tracks/4/type = "value"
 tracks/4/path = NodePath("../squirrel/HUD:visibility/visible")
@@ -194,7 +196,7 @@ tracks/8/path = NodePath("squirrel:transform/pos")
 tracks/8/interp = 1
 tracks/8/imported = false
 tracks/8/keys = {
-"times": FloatArray( 1, 1.5, 5.8, 6.8, 7 ),
+"times": FloatArray( 1, 1.5, 5.8, 9.5, 9.7 ),
 "transitions": FloatArray( 1, 1, 1, 1, 1 ),
 "update": 0,
 "values": [ Vector2( 338, 396 ), Vector2( 274, 396 ), Vector2( 274, 396 ), Vector2( 274, 396 ), Vector2( 251, 365 ) ]
@@ -224,10 +226,10 @@ tracks/11/path = NodePath("black_white/black_white:visibility/visible")
 tracks/11/interp = 1
 tracks/11/imported = false
 tracks/11/keys = {
-"times": FloatArray( 0, 2.3, 5.8 ),
-"transitions": FloatArray( 1, 1, 1 ),
+"times": FloatArray( 0, 2.3, 5.8, 9.7 ),
+"transitions": FloatArray( 1, 1, 1, 1 ),
 "update": 1,
-"values": [ false, true, false ]
+"values": [ false, true, false, true ]
 }
 tracks/12/type = "value"
 tracks/12/path = NodePath("tree:visibility/visible")
@@ -284,7 +286,7 @@ tracks/17/path = NodePath("squirrels/squirrel1:transform/pos")
 tracks/17/interp = 1
 tracks/17/imported = false
 tracks/17/keys = {
-"times": FloatArray( 6.8, 7 ),
+"times": FloatArray( 9.5, 9.7 ),
 "transitions": FloatArray( 1, 1 ),
 "update": 0,
 "values": [ Vector2( 145, 397 ), Vector2( 176, 382 ) ]
@@ -294,7 +296,7 @@ tracks/18/path = NodePath("squirrels/squirrel2:transform/pos")
 tracks/18/interp = 1
 tracks/18/imported = false
 tracks/18/keys = {
-"times": FloatArray( 6.8, 7 ),
+"times": FloatArray( 9.5, 9.7 ),
 "transitions": FloatArray( 1, 1 ),
 "update": 0,
 "values": [ Vector2( 115, 381 ), Vector2( 145, 362 ) ]
@@ -304,7 +306,7 @@ tracks/19/path = NodePath("squirrels/squirrel3:transform/pos")
 tracks/19/interp = 1
 tracks/19/imported = false
 tracks/19/keys = {
-"times": FloatArray( 6.8, 7 ),
+"times": FloatArray( 9.5, 9.7 ),
 "transitions": FloatArray( 1, 1 ),
 "update": 0,
 "values": [ Vector2( 121, 407 ), Vector2( 156, 400 ) ]
@@ -314,7 +316,7 @@ tracks/20/path = NodePath("squirrels/squirrel4:transform/pos")
 tracks/20/interp = 1
 tracks/20/imported = false
 tracks/20/keys = {
-"times": FloatArray( 6.8, 7 ),
+"times": FloatArray( 9.5, 9.7 ),
 "transitions": FloatArray( 1, 1 ),
 "update": 0,
 "values": [ Vector2( 293, 404 ), Vector2( 274, 394 ) ]
@@ -328,6 +330,26 @@ tracks/21/keys = {
 "transitions": FloatArray( 1 ),
 "update": 1,
 "values": [ true ]
+}
+tracks/22/type = "value"
+tracks/22/path = NodePath("StreamPlayer:stream/play")
+tracks/22/interp = 1
+tracks/22/imported = false
+tracks/22/keys = {
+"times": FloatArray( 5.8 ),
+"transitions": FloatArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/23/type = "value"
+tracks/23/path = NodePath("to_be_continued:visibility/visible")
+tracks/23/interp = 1
+tracks/23/imported = false
+tracks/23/keys = {
+"times": FloatArray( 0, 9.7 ),
+"transitions": FloatArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
 }
 
 [sub_resource type="Animation" id=6]
@@ -735,7 +757,7 @@ color/color_ramp = SubResource( 2 )
 
 [node name="squirrel" parent="." instance=ExtResource( 6 )]
 
-transform/pos = Vector2( 73, 111 )
+transform/pos = Vector2( 2447, 129 )
 
 [node name="trees" type="Node" parent="."]
 
@@ -1026,7 +1048,6 @@ z/z = 50
 
 [node name="black_white" type="ColorFrame" parent="cinematic/black_white"]
 
-visibility/visible = false
 material/material = SubResource( 11 )
 focus/ignore_mouse = false
 focus/stop_mouse = true
@@ -1050,5 +1071,22 @@ margin/top = 0.0
 margin/right = 832.0
 margin/bottom = 600.0
 color = Color( 0, 0, 0, 1 )
+
+[node name="to_be_continued" type="Sprite" parent="cinematic"]
+
+transform/pos = Vector2( 400, 348 )
+z/z = 99
+texture = ExtResource( 14 )
+
+[node name="StreamPlayer" type="StreamPlayer" parent="cinematic"]
+
+stream/stream = ExtResource( 15 )
+stream/play = true
+stream/loop = false
+stream/volume_db = 0.0
+stream/autoplay = false
+stream/paused = false
+stream/loop_restart_time = 0.0
+stream/buffering_ms = 500
 
 
