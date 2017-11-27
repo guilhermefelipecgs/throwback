@@ -791,63 +791,70 @@ color/color_ramp = SubResource( 2 )
 
 [node name="squirrel" parent="." instance=ExtResource( 6 )]
 
-transform/pos = Vector2( 2399, 122 )
+transform/pos = Vector2( 62, 112 )
 
 [node name="trees" type="Node" parent="."]
-
-editor/display_folded = true
 
 [node name="tree" parent="trees" instance=ExtResource( 7 )]
 
 transform/pos = Vector2( 179, 379 )
 wait_time = 1.0
+can_fall = true
 
 [node name="tree1" parent="trees" instance=ExtResource( 7 )]
 
 transform/pos = Vector2( 434, 513 )
 wait_time = 2.0
+can_fall = true
 
 [node name="tree2" parent="trees" instance=ExtResource( 7 )]
 
 transform/pos = Vector2( 622, 1098 )
 wait_time = 1.5
+can_fall = true
 
 [node name="tree3" parent="trees" instance=ExtResource( 7 )]
 
 transform/pos = Vector2( 873, 397 )
 wait_time = 1.5
+can_fall = true
 
 [node name="tree4" parent="trees" instance=ExtResource( 7 )]
 
 transform/pos = Vector2( 1224, 421 )
 wait_time = 1.5
+can_fall = true
 
 [node name="tree5" parent="trees" instance=ExtResource( 7 )]
 
 transform/pos = Vector2( 1496, 505 )
 wait_time = 1.5
+can_fall = true
 
 [node name="tree6" parent="trees" instance=ExtResource( 7 )]
 
 transform/pos = Vector2( 1763, 441 )
 wait_time = 1.5
+can_fall = true
 
 [node name="tree7" parent="trees" instance=ExtResource( 7 )]
 
 transform/pos = Vector2( 2060, 571 )
 wait_time = 5.0
+can_fall = true
 
 [node name="tree8" parent="trees" instance=ExtResource( 7 )]
 
 transform/pos = Vector2( 2238, 1060 )
 wait_time = 3.0
+can_fall = true
 
 [node name="tree_end" parent="trees" instance=ExtResource( 7 )]
 
 editor/display_folded = true
 transform/pos = Vector2( 2507, 405 )
 z/z = 4
-wait_time = 10.0
+wait_time = 1.5
 last_tree = true
 
 [node name="end" type="Position2D" parent="trees/tree_end"]
@@ -856,7 +863,6 @@ transform/pos = Vector2( 3, -272 )
 
 [node name="cinematic" type="Node2D" parent="."]
 
-transform/pos = Vector2( 2167, 0 )
 z/z = 14
 
 [node name="bg_floor1" type="Sprite" parent="cinematic"]
@@ -903,10 +909,10 @@ texture = ExtResource( 11 )
 
 [node name="Camera2D" type="Camera2D" parent="cinematic"]
 
-transform/pos = Vector2( 305.961, 110.286 )
+transform/pos = Vector2( 147, 285 )
 anchor_mode = 1
 rotating = false
-current = true
+current = false
 zoom = Vector2( 1, 1 )
 limit/left = -10000000
 limit/top = -10000000
@@ -924,10 +930,9 @@ drag_margin/bottom = 0.2
 [node name="lumberjack" type="Sprite" parent="cinematic"]
 
 editor/display_folded = true
-transform/pos = Vector2( 200, 368 )
+transform/pos = Vector2( 137, 366 )
 z/z = 4
 texture = ExtResource( 12 )
-flip_h = true
 hframes = 5
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="cinematic/lumberjack"]
@@ -957,6 +962,7 @@ autoplay = "cinematic_start"
 [node name="squirrel" type="Sprite" parent="cinematic"]
 
 editor/display_folded = true
+visibility/visible = false
 transform/pos = Vector2( 338, 396 )
 z/z = 5
 texture = ExtResource( 13 )
@@ -981,6 +987,7 @@ autoplay = ""
 [node name="squirrels" type="Node2D" parent="cinematic"]
 
 editor/display_folded = true
+visibility/visible = false
 
 [node name="squirrel1" type="Sprite" parent="cinematic/squirrels"]
 
@@ -1081,6 +1088,7 @@ autoplay = ""
 
 [node name="black_white" type="Node2D" parent="cinematic"]
 
+editor/display_folded = true
 transform/pos = Vector2( -274, -87 )
 z/z = 50
 
@@ -1113,6 +1121,7 @@ color = Color( 0, 0, 0, 1 )
 
 [node name="sepia" type="ColorFrame" parent="cinematic/black_white"]
 
+visibility/visible = false
 material/material = SubResource( 13 )
 focus/ignore_mouse = false
 focus/stop_mouse = true
