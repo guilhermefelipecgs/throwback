@@ -35,10 +35,10 @@ func _process(delta):
 	
 	if global.game_over:
 		var hud_game_over = get_node("HUD/game_over")
-		var streamPlayer = hud_game_over.get_node("StreamPlayer")
+		var streamPlayer = hud_game_over.get_node("SamplePlayer")
 		
 		if not (hud_game_over.is_visible() and streamPlayer.is_playing()):
-			streamPlayer.play()
+			streamPlayer.play("game_over")
 		hud_game_over.show()
 	
 	# GO

@@ -100,6 +100,8 @@ color/color_ramp = SubResource( 1 )
 
 [node name="cover" type="Sprite" parent="."]
 
+editor/display_folded = true
+visibility/visible = false
 texture = ExtResource( 1 )
 centered = false
 

@@ -1,6 +1,7 @@
 extends Node
 
 var level = load("res://scenes/level.tscn")
+var home_res = load("res://scenes/home.tscn")
 var current_level
 var home = true
 var can_start = false
@@ -61,6 +62,13 @@ func pause():
 		else:
 			get_tree().set_pause(true)
 			viewport.get_parent().get_node("paused").show()
+
+func go_home():
+	get_tree().set_pause(false)
+	var h = home_res.instance()
+	viewport.remove_child(current_level)
+	viewport.add_child(h)
+	home = true
 
 func _rearrenge_z_index():
 	var trees = viewport.get_node("level/trees")

@@ -1,8 +1,17 @@
-[gd_scene load_steps=4 format=1]
+[gd_scene load_steps=5 format=1]
 
 [ext_resource path="res://fonts/PressStart2P.fnt" type="BitmapFont" id=1]
 [ext_resource path="res://fonts/PressStart2P_smal.fnt" type="BitmapFont" id=2]
-[ext_resource path="res://sounds/dramatic_chipmunk.ogg" type="AudioStream" id=3]
+[ext_resource path="res://sounds/game_over.wav" type="Sample" id=3]
+
+[sub_resource type="SampleLibrary" id=1]
+
+samples/game_over = {
+"db": 0.0,
+"pitch": 1.0,
+"priority": 0,
+"sample": ExtResource( 3 )
+}
 
 [node name="game_over" type="Node2D"]
 
@@ -40,15 +49,21 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="StreamPlayer" type="StreamPlayer" parent="."]
+[node name="SamplePlayer" type="SamplePlayer" parent="."]
 
-stream/stream = ExtResource( 3 )
-stream/play = false
-stream/loop = false
-stream/volume_db = 0.0
-stream/autoplay = false
-stream/paused = false
-stream/loop_restart_time = 0.0
-stream/buffering_ms = 500
+config/polyphony = 1
+config/samples = SubResource( 1 )
+default/volume_db = 0.0
+default/pitch_scale = 1.0
+default/pan = 0.0
+default/depth = 0.0
+default/height = 0.0
+default/filter/type = 0
+default/filter/cutoff = 5000.0
+default/filter/resonance = 1.0
+default/filter/gain = 1.0
+default/reverb_room = 2
+default/reverb_send = 0.0
+default/chorus_send = 0.0
 
 
