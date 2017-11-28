@@ -54,6 +54,7 @@ func _process(delta):
 func _fixed_process(delta):
 	if global.running:
 		var dir = Vector2()
+		force_flip = false
 		
 		if not on_wall:
 			if Input.is_action_pressed("ui_right"):
