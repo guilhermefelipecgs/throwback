@@ -188,8 +188,9 @@ func _on_TriggerWall_body_exit( body ):
 func _on_TriggerGround_body_enter( body ):
 	if body.get_name() != "squirrel":
 		on_floor = true
-		splayer.play("fall")
-		_vfx_jump_fall()
+		if lv.y > 0:
+			splayer.play("fall")
+			_vfx_jump_fall()
 
 func _on_TriggerGround_body_exit( body ):
 	if body.get_name() != "squirrel":
