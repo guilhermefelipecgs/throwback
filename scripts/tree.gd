@@ -1,6 +1,6 @@
 extends Node2D
 
-export var wait_time = 1.5
+export var wait_time = 2.5
 export var can_fall  = true
 export var last_tree  = false
 
