@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=1]
+[gd_scene load_steps=30 format=1]
 
 [ext_resource path="res://textures/bg-2.png" type="Texture" id=1]
 [ext_resource path="res://textures/bg-1.png" type="Texture" id=2]
@@ -8,11 +8,12 @@
 [ext_resource path="res://scenes/squirrel.tscn" type="PackedScene" id=6]
 [ext_resource path="res://scenes/tree.tscn" type="PackedScene" id=7]
 [ext_resource path="res://textures/bg_floor.png" type="Texture" id=8]
-[ext_resource path="res://textures/lumberjack/lumberjack_sprite_sheet.png" type="Texture" id=9]
-[ext_resource path="res://sounds/cut.wav" type="Sample" id=10]
-[ext_resource path="res://textures/squirrel/squirrel_sprite_sheet.png" type="Texture" id=11]
-[ext_resource path="res://textures/to_be_continued.png" type="Texture" id=12]
-[ext_resource path="res://sounds/to_be_continued.ogg" type="AudioStream" id=13]
+[ext_resource path="res://fonts/PressStart2P_smal.fnt" type="BitmapFont" id=9]
+[ext_resource path="res://textures/lumberjack/lumberjack_sprite_sheet.png" type="Texture" id=10]
+[ext_resource path="res://sounds/cut.wav" type="Sample" id=11]
+[ext_resource path="res://textures/squirrel/squirrel_sprite_sheet.png" type="Texture" id=12]
+[ext_resource path="res://textures/to_be_continued.png" type="Texture" id=13]
+[ext_resource path="res://sounds/to_be_continued.ogg" type="AudioStream" id=14]
 
 [sub_resource type="GDScript" id=1]
 
@@ -101,7 +102,7 @@ samples/cut = {
 "db": 0.0,
 "pitch": 1.0,
 "priority": 0,
-"sample": ExtResource( 10 )
+"sample": ExtResource( 11 )
 }
 
 [sub_resource type="Animation" id=6]
@@ -124,8 +125,8 @@ tracks/1/path = NodePath("..")
 tracks/1/interp = 1
 tracks/1/imported = false
 tracks/1/keys = {
-"times": FloatArray( 0, 1, 1.5, 2.3, 5.8, 9.5, 9.7, 13 ),
-"transitions": FloatArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"times": FloatArray( 0, 1, 1.5, 2.3, 5.8, 9.5, 9.7 ),
+"transitions": FloatArray( 1, 1, 1, 1, 1, 1, 1 ),
 "values": [ {
 "args": [  ],
 "method": "stop_cut"
@@ -147,9 +148,6 @@ tracks/1/keys = {
 }, {
 "args": [  ],
 "method": "stop"
-}, {
-"args": [  ],
-"method": "call_credits"
 } ]
 }
 tracks/2/type = "value"
@@ -377,12 +375,32 @@ tracks/24/path = NodePath("AnimationPlayer")
 tracks/24/interp = 1
 tracks/24/imported = false
 tracks/24/keys = {
-"times": FloatArray( 13 ),
+"times": FloatArray( 25 ),
 "transitions": FloatArray( 1 ),
 "values": [ {
 "args": [  ],
 "method": "call_credits"
 } ]
+}
+tracks/25/type = "value"
+tracks/25/path = NodePath("Camera2D/credits:visibility/visible")
+tracks/25/interp = 1
+tracks/25/imported = false
+tracks/25/keys = {
+"times": FloatArray( 0, 12 ),
+"transitions": FloatArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/26/type = "value"
+tracks/26/path = NodePath("Camera2D/credits:transform/pos")
+tracks/26/interp = 1
+tracks/26/imported = false
+tracks/26/keys = {
+"times": FloatArray( 12, 25 ),
+"transitions": FloatArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( -192, 14.5857 ), Vector2( -192, -1411.38 ) ]
 }
 
 [sub_resource type="Animation" id=7]
@@ -824,8 +842,6 @@ transform/pos = Vector2( 60.9097, 113 )
 
 [node name="trees" type="Node" parent="."]
 
-editor/display_folded = true
-
 [node name="tree" parent="trees" instance=ExtResource( 7 )]
 
 transform/pos = Vector2( 179, 379 )
@@ -834,7 +850,7 @@ can_fall = true
 
 [node name="tree1" parent="trees" instance=ExtResource( 7 )]
 
-transform/pos = Vector2( 488, 418 )
+transform/pos = Vector2( 507, 424 )
 wait_time = 2.5
 can_fall = true
 
@@ -900,7 +916,7 @@ can_fall = true
 
 [node name="tree12" parent="trees" instance=ExtResource( 7 )]
 
-transform/pos = Vector2( 2550.38, 1124.24 )
+transform/pos = Vector2( 2549.38, 1121.24 )
 wait_time = 2.5
 can_fall = true
 
@@ -976,12 +992,143 @@ drag_margin/top = 0.2
 drag_margin/right = 0.2
 drag_margin/bottom = 0.2
 
+[node name="credits" type="Node2D" parent="cinematic/Camera2D"]
+
+visibility/visible = false
+transform/pos = Vector2( -192, 14.5857 )
+z/z = 100
+
+[node name="credits" type="RichTextLabel" parent="cinematic/Camera2D/credits"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 164.0
+margin/right = 384.0
+margin/bottom = 1164.0
+custom_fonts/normal_font = ExtResource( 9 )
+bbcode/enabled = true
+bbcode/bbcode = "[center]Directed by[/center]
+[center]Guilherne Felipe de C. G. da Silva[/center]
+
+
+[center]Writing Credits[/center]
+[center]Guilherne Felipe de C. G. da Silva[/center]
+
+
+[center]Cast[/center]
+[center]Guilherne Felipe de C. G. da Silva[/center]
+
+
+[center]Produced by[/center]
+[center]Guilherne Felipe de C. G. da Silva[/center]
+
+
+[center]Music by[/center]
+[center]Guilherne Felipe de C. G. da Silva[/center]
+
+
+[center]Cinematography by[/center]
+[center]Guilherne Felipe de C. G. da Silva[/center]
+
+
+[center]Film Editing by[/center]
+[center]Guilherne Felipe de C. G. da Silva[/center]
+
+
+[center]Casting By[/center]
+[center]Guilherne Felipe de C. G. da Silva[/center]
+
+
+[center]Production Design by[/center]
+[center]Guilherne Felipe de C. G. da Silva[/center]
+
+
+[center]Art Direction by[/center]
+[center]Guilherne Felipe de C. G. da Silva[/center]
+
+
+[center]Set Decoration by[/center]
+[center]Guilherne Felipe de C. G. da Silva[/center]
+
+
+[center]Costume Design by[/center]
+[center]Guilherne Felipe de C. G. da Silva[/center]
+
+
+[center]Makeup Department[/center]
+[center]Guilherne Felipe de C. G. da Silva[/center]
+
+
+[center]Production Management[/center]
+[center]Guilherne Felipe de C. G. da Silva[/center]
+
+
+[center]Second Unit Director or Assistant Director[/center]
+[center]Guilherne Felipe de C. G. da Silva[/center]
+
+
+[center]Art Department[/center]
+[center]Guilherne Felipe de C. G. da Silva[/center]
+
+
+[center]Sound Department[/center]
+[center]Guilherne Felipe de C. G. da Silva[/center]
+
+
+[center]Special Effects by[/center]
+[center]Guilherne Felipe de C. G. da Silva[/center]
+
+
+[center]Visual Effects by[/center]
+[center]Guilherne Felipe de C. G. da Silva[/center]
+
+
+[center]Stunts[/center]
+[center]Guilherne Felipe de C. G. da Silva[/center]
+
+
+[center]Camera and Electrical Department[/center]
+[center]Guilherne Felipe de C. G. da Silva[/center]
+
+
+[center]Animation Department[/center]
+[center]Guilherne Felipe de C. G. da Silva[/center]
+
+
+[center]Casting Department[/center]
+[center]Guilherne Felipe de C. G. da Silva[/center]
+
+
+[center]Costume and Wardrobe Department[/center]
+[center]Guilherne Felipe de C. G. da Silva[/center]
+
+
+[center]Editorial Department[/center]
+[center]Guilherne Felipe de C. G. da Silva[/center]
+
+
+[center]Location Management[/center]
+[center]Guilherne Felipe de C. G. da Silva[/center]
+
+
+[center]Music Department[/center]
+[center]Guilherne Felipe de C. G. da Silva[/center]
+
+
+[center]Transportation Department[/center]
+[center]Guilherne Felipe de C. G. da Silva[/center]"
+visible_characters = -1
+percent_visible = 1.0
+
 [node name="lumberjack" type="Sprite" parent="cinematic"]
 
 editor/display_folded = true
 transform/pos = Vector2( 137, 366 )
 z/z = 4
-texture = ExtResource( 9 )
+texture = ExtResource( 10 )
 hframes = 5
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="cinematic/lumberjack"]
@@ -1025,9 +1172,9 @@ script/script = SubResource( 8 )
 
 editor/display_folded = true
 visibility/visible = false
-transform/pos = Vector2( 251, 365 )
+transform/pos = Vector2( 338, 396 )
 z/z = 5
-texture = ExtResource( 11 )
+texture = ExtResource( 12 )
 flip_h = true
 vframes = 2
 hframes = 5
@@ -1054,9 +1201,10 @@ visibility/visible = false
 [node name="squirrel1" type="Sprite" parent="cinematic/squirrels"]
 
 editor/display_folded = true
-transform/pos = Vector2( 176, 382 )
+visibility/visible = false
+transform/pos = Vector2( 145, 397 )
 z/z = 5
-texture = ExtResource( 11 )
+texture = ExtResource( 12 )
 vframes = 2
 hframes = 5
 frame = 3
@@ -1077,9 +1225,10 @@ autoplay = ""
 [node name="squirrel2" type="Sprite" parent="cinematic/squirrels"]
 
 editor/display_folded = true
-transform/pos = Vector2( 145, 362 )
+visibility/visible = false
+transform/pos = Vector2( 115, 381 )
 z/z = 5
-texture = ExtResource( 11 )
+texture = ExtResource( 12 )
 vframes = 2
 hframes = 5
 frame = 3
@@ -1100,9 +1249,10 @@ autoplay = ""
 [node name="squirrel3" type="Sprite" parent="cinematic/squirrels"]
 
 editor/display_folded = true
-transform/pos = Vector2( 156, 400 )
+visibility/visible = false
+transform/pos = Vector2( 121, 407 )
 z/z = 5
-texture = ExtResource( 11 )
+texture = ExtResource( 12 )
 vframes = 2
 hframes = 5
 frame = 3
@@ -1123,9 +1273,10 @@ autoplay = ""
 [node name="squirrel4" type="Sprite" parent="cinematic/squirrels"]
 
 editor/display_folded = true
-transform/pos = Vector2( 274, 394 )
+visibility/visible = false
+transform/pos = Vector2( 293, 404 )
 z/z = 5
-texture = ExtResource( 11 )
+texture = ExtResource( 12 )
 flip_h = true
 vframes = 2
 hframes = 5
@@ -1195,11 +1346,11 @@ color = Color( 0, 0, 0, 1 )
 visibility/visible = false
 transform/pos = Vector2( 394, 364 )
 z/z = 99
-texture = ExtResource( 12 )
+texture = ExtResource( 13 )
 
 [node name="StreamPlayer" type="StreamPlayer" parent="cinematic"]
 
-stream/stream = ExtResource( 13 )
+stream/stream = ExtResource( 14 )
 stream/play = true
 stream/loop = false
 stream/volume_db = 0.0
