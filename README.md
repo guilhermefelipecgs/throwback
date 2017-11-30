@@ -1,4 +1,4 @@
-# Throwback: Revenge of the squirrels
+![banner](/banner.png)
 
 Game maded for GitHub Game Off.
 
