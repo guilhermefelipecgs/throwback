@@ -1,6 +1,6 @@
 ![banner](/banner.png)
 
-Game maded for GitHub Game Off.
+Game created for GitHub Game Off.
 
 https://guilhermefelipecgs.itch.io/throwback-revenge-of-the-squirrels
 
